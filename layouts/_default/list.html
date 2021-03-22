@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" />
+    <link href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css" rel="stylesheet" type="text/css" />
+    <link rel="icon" href="images/B6_round.png" />
+    <link rel="stylesheet" href="css/style.css" />
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <title>B-VI</title>
+  </head>
+  <body>
+
+<!-- MAIN FOLDERS -->
+    <div class="folders">
+      {{ $.Scratch.Set "counter" 1 }} 
+      {{range .Site.Pages}} 
+        {{if .Dir}} 
+          {{ $currentDir := split .Dir `\`}} 
+          {{$index0 := index $currentDir 0}}
+          {{$index1 := index $currentDir 1}}
+          {{if and ($index0) (not $index1)}}
+              <div folderanchor="folder{{$.Scratch.Get `counter`}}" class="folder folder-item">
+                <img src="images/dossier.png" alt="" />
+                <h2>{{$index0}}</h2>
+              </div>
+          {{ $.Scratch.Set "counter" (add ($.Scratch.Get "counter") 1) }} 
+        {{end}} 
+        {{end}} 
+      {{end}}
+      <div class="computer">
+        <img src="images/ordi.png" alt="" />
+        <h2>Contact</h2>
+      </div>
+    </div>
+<!-- END MAIN FOLDERS -->
+
+
+<!-- SUB FOLDERS -->
+    {{ $.Scratch.Set "counter" 1 }} 
+    {{ $.Scratch.Set "modalCount" 1 }} 
+    {{range .Site.Pages}}
+    {{if .Dir}} 
+    {{ $currentDir := trim .Dir `\`}} 
+    {{if not (in $currentDir `\`)}}
+
+    <div id="folder{{$.Scratch.Get `counter`}}" class="windows brandingW active-w">
+      <div class="window-header">
+        <div class="header-left">
+          <img class="folder-header" src="images/dossier-ouvert-black.png" alt="" />
+          <p>{{$currentDir}}</p>
+        </div>
+        <div class="header-right">
+          <i class="fas fa-minus square-tool réduire"></i>
+          <i onclick="FullScreen()" class="far fa-square square-tool fullscreen"></i>
+          <i class="fas fa-times square-tool croix"></i>
+        </div>
+      </div>
+      <div class="window-content">
+        <div class="left-content">
+
+          <!-- CONTENU DU FOLDER ACTUEL -->
+          {{ $.Scratch.Set "imgCount" 1 }} 
+          {{range .Site.Pages}} 
+            {{$arrayDir := split .Dir `\`}}
+            {{$index0 := index $arrayDir 0}}
+            {{$index1 := index $arrayDir 1}}
+            {{$index2 := index $arrayDir 2}}  
+ 
+            {{if and ($index0) (eq $index0 $currentDir)}}
+            {{if (eq .Title $index0)}}
+            {{if .Params.images}}
+            {{ $imgArray := slice }}
+                {{range .Params.images}}
+                  <img class="imgContent activeModal{{$.Scratch.Get `modalCount`}}" index="{{$.Scratch.Get `imgCount`}}" src="{{ . }}" alt="" />
+                  {{ $imgArray = $imgArray | append .}}
+
+                  {{ $.Scratch.Set "imgCount" (add ($.Scratch.Get "imgCount") 1) }}
+                {{end}}
+                {{if (gt (len $imgArray) 1)}}
+                  {{$lastElem := sub (len $imgArray) 1}}
+                  <div class="modal-bg modal-bg{{$.Scratch.Get `modalCount`}}">
+                    <div class="modal">
+                      <img src="images/croix_01.png" alt="" class="croix_modal">
+                      <div class="carousel-container">
+                        <div class="carousel-slide carousel-slide{{$.Scratch.Get `modalCount`}}">
+                          <div class="imgSlide imgSlide{{$.Scratch.Get `modalCount`}}" id="lastClone">
+                            <img class="imgCarousel" src="{{index $imgArray $lastElem}}" alt="" />
+                          </div>
+                          {{range .Params.images}}
+                            <div class="imgSlide imgSlide{{$.Scratch.Get `modalCount`}}">
+                              <img class="imgCarousel" src="{{.}}" alt="" />
+                            </div>
+                          {{end}}
+                          <div class="imgSlide imgSlide{{$.Scratch.Get `modalCount`}}" id="firstClone">
+                            <img class="imgCarousel" src="{{index $imgArray 0}}" alt="" />
+                          </div>
+                        </div>
+                        <i id="prevBtn{{$.Scratch.Get `modalCount`}}" class="prevBtn"></i>
+                        <i id="nextBtn{{$.Scratch.Get `modalCount`}}" class="nextBtn"></i>
+                      </div>
+                    </div>
+                  </div>
+                  {{ $.Scratch.Set "modalCount" (add ($.Scratch.Get "modalCount") 1) }}
+
+                {{else}}
+                <div class="modal-bg modal-bg{{$.Scratch.Get `modalCount`}}">
+                  <div class="modal">
+                    <img src="images/croix_01.png" alt="" class="croix_modal">
+                    <div class="carousel-container">
+                      <div class="carousel-slide carousel-slide{{$.Scratch.Get `modalCount`}}">
+                        <div class="imgSlide imgSlide{{$.Scratch.Get `modalCount`}}" id="lastClone">
+                          <img class="imgCarousel" src="{{index $imgArray 0}}" alt="" />
+                        </div>
+                        <div class="imgSlide imgSlide{{$.Scratch.Get `modalCount`}}" id="firstClone">
+                          <img class="imgCarousel" src="{{index $imgArray 0}}" alt="" />
+                        </div>
+                      </div>
+                      <i id="prevBtn{{$.Scratch.Get `modalCount`}}" class="prevBtn"></i>
+                      <i id="nextBtn{{$.Scratch.Get `modalCount`}}" class="nextBtn"></i>
+                    </div>
+                  </div>
+                </div>
+                {{end}}
+              {{end}}
+              {{end}}
+            {{end}}
+          {{end}}
+
+          <!-- SOUS FOLDERS DU FOLDER ACTUEL -->
+         {{range .Site.Pages}} 
+          {{$arrayDir := split .Dir `\`}}
+          {{$index0 := index $arrayDir 0}}
+          {{$index1 := index $arrayDir 1}}
+          {{$index2 := index $arrayDir 2}}      
+          {{if and (and $index0 $index1) (eq $index0 $currentDir) (not $index2)}}
+          {{ $index1trim := replaceRE "'" "" (replaceRE "é" "e" (replaceRE "(\\s)" ""  $index1))}}
+          <div folderanchor="folder{{$index1trim}}{{$.Scratch.Get `counter`}}" name="{{$index1}}" class="foldersInW folder-item">
+            <img src="images/dossier.png" alt="" />
+            <h2>{{$index1}}</h2>
+            </div> <br>
+          {{end}}
+         {{end}}
+        </div>
+        <div class="right-content">
+          {{.Params.description}}
+        </div>
+      </div>
+    </div>
+    {{ $.Scratch.Set "counter" (add ($.Scratch.Get "counter") 1) }} {{end}} {{end}} {{end}}
+
+    <div id="contact" class="windows contactW active-w">
+      <div class="window-header">
+        <div class="header-left">
+          <img class="folder-header" src="images/ordi.png" alt="" />
+          <p>Contact</p>
+        </div>
+        <div class="header-right">
+          <i class="fas fa-minus square-tool réduire"></i>
+          <i onclick="FullScreen()" class="far fa-square square-tool fullscreen"></i>
+          <i class="fas fa-times square-tool croix"></i>
+        </div>
+      </div>
+      <div class="window-content contact">
+        <h2>Lucas Bessis</h2>
+        <h2>Intuit Lab Paris</h2>
+        <br />
+        <h2>web : <a href="" target="_blank">b-vi.fr</a></h2>
+        <h2>mail : <a href="mailto:lucas.bessis@gmail.com">lucas.bessis@gmail.com</a></h2>
+        <h2>phone : 06 47 81 50 70</h2>
+        <h2>instagram : <a href="https://www.instagram.com/l.bvi/" target="_blank">@l.bvi</a></h2>
+      </div>
+    </div>
+
+    <!-- WINDOWS SUB FOLDERS  -->
+    {{ $.Scratch.Set "modalSubFolder" ($.Scratch.Get "modalCount") }} 
+    {{ $.Scratch.Set "modalSubFolder" (add ($.Scratch.Get "modalSubFolder") 1) }}
+    {{ $.Scratch.Set "counter" 1 }} 
+    {{range .Site.Pages}}
+    {{if .Dir}} 
+    {{ $currentDir := trim .Dir `\`}} 
+    {{if not (in $currentDir `\`)}}
+         {{range .Site.Pages}} 
+          {{$arrayDir := split .Dir `\`}}
+          {{$index0 := index $arrayDir 0}}
+          {{$index1 := index $arrayDir 1}}
+          {{$index2 := index $arrayDir 2}}
+          {{if and (and $index0 $index1) (eq $index0 $currentDir) (not $index2)}}
+
+            {{ $index1trim := replaceRE "'" "" (replaceRE "é" "e" (replaceRE "(\\s)" ""  $index1))}}
+
+          <div id='folder{{ $index1trim }}{{$.Scratch.Get `counter`}}' class="windows editionW active-w">
+            <div class="window-header">
+              <div class="header-left">
+                <img class="folder-header" src="images/dossier-ouvert-black.png" alt="" />
+                <p>{{$index1}}</p>
+              </div>
+              <div class="header-right">
+                <i class="fas fa-minus square-tool réduire"></i>
+                <i onclick="FullScreen()" class="far fa-square square-tool fullscreen"></i>
+                <i class="fas fa-times square-tool croix"></i>
+              </div>
+            </div>
+            <div class="window-content">
+              <div class="left-content">
+
+          <!-- CONTENU DU SUB FOLDER ACTUEL -->
+          {{ $.Scratch.Set "imgCountBis" 1 }} 
+          {{range .Site.Pages}} 
+            {{$arrayDir := split .Dir `\`}}
+            {{$index0 := index $arrayDir 0}}
+            {{$index11 := index $arrayDir 1}}
+            {{$index2 := index $arrayDir 2}}  
+            {{if and ($index11) (eq $index1 $index11) (not $index2)}}
+            {{if .Params.images}}
+            {{ $imgArrayBis := slice }}
+                {{range .Params.images}}
+                  <img class="imgContent activeModal{{$.Scratch.Get `modalSubFolder`}} " index="{{$.Scratch.Get `imgCountBis`}}" src="{{ . }}" alt="" />
+                  {{ $imgArrayBis = $imgArrayBis | append .}}
+                  {{ $.Scratch.Set "imgCountBis" (add ($.Scratch.Get "imgCountBis") 1) }}
+                {{end}}
+                {{if (gt (len $imgArrayBis) 1)}}
+                  {{$lastElem := sub (len $imgArrayBis) 1}}
+                  <div class="modal-bg modal-bg{{$.Scratch.Get `modalSubFolder`}} ">
+                    <div class="modal">
+                      <img src="images/croix_01.png" alt="" class="croix_modal">
+                      <div class="carousel-container">
+                        <div class="carousel-slide carousel-slide{{$.Scratch.Get `modalSubFolder`}} ">
+                          <div class="imgSlide imgSlide{{$.Scratch.Get `modalSubFolder`}} " id="lastClone">
+                            <img class="imgCarousel" src="{{index $imgArrayBis $lastElem}}" alt="" />
+                          </div>
+                          {{range .Params.images}}
+                            <div class="imgSlide imgSlide{{$.Scratch.Get `modalSubFolder`}} ">
+                              <img class="imgCarousel" src="{{.}}" alt="" />
+                            </div>
+                          {{end}}
+                          <div class="imgSlide imgSlide{{$.Scratch.Get `modalSubFolder`}} " id="firstClone">
+                            <img class="imgCarousel" src="{{index $imgArrayBis 0}}" alt="" />
+                          </div>
+                        </div>
+                        <i id="prevBtn{{$.Scratch.Get `modalSubFolder`}}" class="prevBtn"></i>
+                        <i id="nextBtn{{$.Scratch.Get `modalSubFolder`}}" class="nextBtn"></i>
+                      </div>
+                    </div>
+                  </div>
+                {{else}}
+                <div class="modal-bg modal-bg{{$.Scratch.Get `modalSubFolder`}} ">
+                  <div class="modal">
+                    <img src="images/croix_01.png" alt="" class="croix_modal">
+                    <div class="carousel-container">
+                      <div class="carousel-slide carousel-slide{{$.Scratch.Get `modalSubFolder`}} ">
+                        <div class="imgSlide imgSlide{{$.Scratch.Get `modalSubFolder`}} " id="lastClone">
+                          <img class="imgCarousel" src="{{index $imgArrayBis 0}}" alt="" />
+                        </div>
+                        <div class="imgSlide imgSlide{{$.Scratch.Get `modalSubFolder`}} " id="firstClone">
+                          <img class="imgCarousel" src="{{index $imgArrayBis 0}}" alt="" />
+                        </div>
+                      </div>
+                      <i id="prevBtn{{$.Scratch.Get `modalSubFolder`}}" class="prevBtn"></i>
+                      <i id="nextBtn{{$.Scratch.Get `modalSubFolder`}}" class="nextBtn"></i>
+                    </div>
+                  </div>
+                </div>
+                {{end}}
+                {{ $.Scratch.Set "modalSubFolder" (add ($.Scratch.Get "modalSubFolder") 1) }}
+              {{end}}
+            {{end}}
+          {{end}}
+
+          <!-- FOLDERS DU SUB FOLDER ACTUEL -->
+                {{range .Site.Pages}} 
+                {{$arrayDir := split .Dir `\`}}
+                {{$index0 := index $arrayDir 0}}
+                {{$index11 := index $arrayDir 1}}
+                {{$index2 := index $arrayDir 2}}
+                {{if and (and $index1 $index2) (eq $index1 $index11)}}
+                {{ $index2trim := replaceRE "'" "" (replaceRE "é" "e" (replaceRE "(\\s)" ""  $index2))}}
+                  <div folderanchor="folder{{$index2trim}}{{$.Scratch.Get `counter`}}" name="{{$index2}}" class="foldersInW folder-item">
+                    <img src="images/dossier.png" alt="" />
+                    <h2>{{$index2}}</h2>
+                  </div> <br>
+                {{end}}
+               {{end}}
+
+              </div>
+              <div id="rc10" class="right-content">
+                {{.Params.description}}
+              </div>
+            </div>
+          </div>
+          {{end}}
+         {{end}}
+    {{ $.Scratch.Set "counter" (add ($.Scratch.Get "counter") 1) }} {{end}} {{end}} {{end}}
+
+
+    <!-- WINDOWS SUB SUB FOLDER -->
+    {{ $.Scratch.Set "modalSubSubFolder" ($.Scratch.Get "modalSubFolder") }} 
+    {{ $.Scratch.Set "modalSubSubFolder" (add ($.Scratch.Get "modalSubSubFolder") 1) }}
+    {{ $.Scratch.Set "counter" 1 }} 
+    {{range .Site.Pages}}
+    {{if .Dir}} 
+    {{ $currentDir := trim .Dir `\`}} 
+    {{if not (in $currentDir `\`)}}
+         {{range .Site.Pages}} 
+          {{$arrayDir := split .Dir `\`}}
+          {{$index0 := index $arrayDir 0}}
+          {{$index1 := index $arrayDir 1}}
+          {{$index2 := index $arrayDir 2}}
+          {{if and (and $index0 $index1) (eq $index0 $currentDir) (not $index2)}}
+                {{range .Site.Pages}} 
+                {{$arrayDir := split .Dir `\`}}
+                {{$index0 := index $arrayDir 0}}
+                {{$index11 := index $arrayDir 1}}
+                {{$index2 := index $arrayDir 2}}
+                {{if and (and $index1 $index2) (eq $index1 $index11)}}
+                  <div id="folder{{$index2}}{{$.Scratch.Get `counter`}}" class="windows editionW active-w">
+                    <div class="window-header">
+                      <div class="header-left">
+                        <img class="folder-header" src="images/dossier-ouvert-black.png" alt="" />
+                        <p> {{$index2}} </p>
+                      </div>
+                      <div class="header-right">
+                        <i class="fas fa-minus square-tool réduire"></i>
+                        <i onclick="FullScreen()" class="far fa-square square-tool fullscreen"></i>
+                        <i class="fas fa-times square-tool croix"></i>
+                      </div>
+                    </div>
+                    <div class="window-content">
+                      <div class="left-content">
+
+          <!-- CONTENU DU SUB SUB FOLDER ACTUEL -->
+          {{ $.Scratch.Set "imgCountTer" 1 }} 
+          {{range .Site.Pages}} 
+            {{$arrayDir := split .Dir `\`}}
+            {{$index0 := index $arrayDir 0}}
+            {{$index11 := index $arrayDir 1}}
+            {{$index22 := index $arrayDir 2}}  
+            {{$index3 := index $arrayDir 3}}  
+            {{if and ($index11) (eq $index2 $index22)}}
+            {{if .Params.images}}
+            {{ $imgArrayBis := slice }}
+                {{range .Params.images}}
+                  <img class="imgContent activeModal{{$.Scratch.Get `modalSubSubFolder`}} " index="{{$.Scratch.Get `imgCountTer`}}" src="{{ . }}" alt="" />
+                  {{ $imgArrayBis = $imgArrayBis | append .}}
+                  {{ $.Scratch.Set "imgCountTer" (add ($.Scratch.Get "imgCountTer") 1) }}
+                {{end}}
+                {{if (gt (len $imgArrayBis) 1)}}
+                  {{$lastElem := sub (len $imgArrayBis) 1}}
+                  <div class="modal-bg modal-bg{{$.Scratch.Get `modalSubSubFolder`}} ">
+                    <div class="modal">
+                      <img src="images/croix_01.png" alt="" class="croix_modal">
+                      <div class="carousel-container">
+                        <div class="carousel-slide carousel-slide{{$.Scratch.Get `modalSubSubFolder`}} ">
+                          <div class="imgSlide imgSlide{{$.Scratch.Get `modalSubSubFolder`}} " id="lastClone">
+                            <img class="imgCarousel" src="{{index $imgArrayBis $lastElem}}" alt="" />
+                          </div>
+                          {{range .Params.images}}
+                            <div class="imgSlide imgSlide{{$.Scratch.Get `modalSubSubFolder`}} ">
+                              <img class="imgCarousel" src="{{.}}" alt="" />
+                            </div>
+                          {{end}}
+                          <div class="imgSlide imgSlide{{$.Scratch.Get `modalSubSubFolder`}} " id="firstClone">
+                            <img class="imgCarousel" src="{{index $imgArrayBis 0}}" alt="" />
+                          </div>
+                        </div>
+                        <i id="prevBtn{{$.Scratch.Get `modalSubSubFolder`}}" class="prevBtn"></i>
+                        <i id="nextBtn{{$.Scratch.Get `modalSubSubFolder`}}" class="nextBtn"></i>
+                      </div>
+                    </div>
+                  </div>
+                {{else}}
+                <div class="modal-bg modal-bg{{$.Scratch.Get `modalSubSubFolder`}} ">
+                  <div class="modal">
+                    <img src="images/croix_01.png" alt="" class="croix_modal">
+                    <div class="carousel-container">
+                      <div class="carousel-slide carousel-slide{{$.Scratch.Get `modalSubSubFolder`}} ">
+                        <div class="imgSlide imgSlide{{$.Scratch.Get `modalSubSubFolder`}} " id="lastClone">
+                          <img class="imgCarousel" src="{{index $imgArrayBis 0}}" alt="" />
+                        </div>
+                        <div class="imgSlide imgSlide{{$.Scratch.Get `modalSubSubFolder`}} " id="firstClone">
+                          <img class="imgCarousel" src="{{index $imgArrayBis 0}}" alt="" />
+                        </div>
+                      </div>
+                      <i id="prevBtn{{$.Scratch.Get `modalSubSubFolder`}}" class="prevBtn"></i>
+                      <i id="nextBtn{{$.Scratch.Get `modalSubSubFolder`}}" class="nextBtn"></i>
+                    </div>
+                  </div>
+                </div>
+                {{end}}
+                {{ $.Scratch.Set "modalSubSubFolder" (add ($.Scratch.Get "modalSubSubFolder") 1) }}
+              {{end}}
+            {{end}}
+          {{end}}
+                      </div>
+                      <div id="rc10" class="right-content">
+                        {{.Params.description}}
+                      </div>
+                    </div>
+                  </div>
+                {{end}}
+               {{end}}
+          {{end}}
+         {{end}}
+    {{ $.Scratch.Set "counter" (add ($.Scratch.Get "counter") 1) }} {{end}} {{end}} {{end}}
+
+
+    <footer class="footer">
+      <div class="left-footer">
+        <img class="B6circle" src="images/B6_round.png" alt="" />
+        <div class="line"></div>
+        {{ $.Scratch.Set "counter" 1 }} {{range .Site.Pages}} {{if .Dir}} {{ $currentDir := trim .Dir `\`}} {{if not (in $currentDir `\`)}}
+        <div id="f-{{$.Scratch.Get `counter`}}" class="folder-footer">
+          <img src="images/dossier-ouvert.png" alt="" />
+          <p>{{$currentDir}}</p>
+        </div>
+        {{ $.Scratch.Set "counter" (add ($.Scratch.Get "counter") 1) }} {{end}} {{end}} {{end}}
+      </div>
+      <div class="right-footer">
+        <div class="line"></div>
+        <div class="time-footer">
+          <div id="DigitalCLOCK" class="clock" onload="showTime()"></div>
+        </div>
+      </div>
+    </footer>
+
+    <script src="js/functions.js"></script>
+    <script>
+      $("div.windows").map(function () {
+        $("#" + this.id).resizable({
+          handles: "all",
+          minWidth: 450,
+          minHeight: 400,
+        });
+        $("#" + this.id).draggable();
+      });
+    </script>
+  </body>
+</html>
