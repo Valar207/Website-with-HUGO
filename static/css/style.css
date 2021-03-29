@@ -83,7 +83,7 @@ p {
 
 .imgContent {
   height: 6rem;
-  margin: 1rem;
+  margin: 1rem 1rem 0 1rem;
   object-fit: cover;
   cursor: pointer;
 }
@@ -314,45 +314,58 @@ footer {
   background-color: black;
   border: solid white 2px;
   position: relative;
+  width: 80%;
+  /* height: 90%; */
+  overflow: hidden;
+  /* height: 80%; */
   /* width: 80%;
   height: 80%; */
 
-  /* display: flex;
-  justify-content: center;
-  align-items: center; */
 }
 
 /* CAROUSEL */
-.carousel-container {
-  width: 700px;
-  /* height: auto; */
-  margin: 0px;
-  overflow: hidden;
-  position: relative;
-}
 
-.carousel-slide {
+.carousel {
   display: flex;
-  width: 100%;
+  align-items: center;
+  /* position: relative; */
+  /* width: 100%; */
 }
 
-.imgSlide {
-  min-width: 700px;
+.carousel_item {
+  min-width: 100%;
+  /* background-color: blueviolet; */
+
+  /* position: relative; */
+  /* object-fit: contain; */
+}
+
+.imgCarousel {
+  margin-bottom: -4px;
+  /* max-height: 100%; */
+  /* width: 90%; */
+
+  max-height: 80vh;
+  max-width: 100%;
+  /* width: 70%; */
+  background-color: burlywood;
+
+  /* height: 100%; */
+  /* vertical-align: middle; */
+}
+
+.description_img {
+  background-color: #1a1a1a;
+  z-index: 99999999999999999999;
+  /* position: absolute; */
+  height: auto;
+  bottom: 0px;
+  right: 0px;
+  left: 0px;
   text-align: center;
-  padding: 0;
+  padding: 0.5rem;
 }
 
-.imgCarousel {
-  object-fit: contain;
-  width: 700px;
-  height: 100%;
-  vertical-align: middle;
-}
-
-.imgCarousel {
-  /* object-fit: cover; */
-  /* width: 500px; */
-}
 
 .prevBtn {
   /* background-color: turquoise; */
@@ -383,8 +396,8 @@ footer {
 
 .croix_modal {
   z-index: 9999999999999;
-  position: absolute;
-  right: -22px;
-  top: -22px;
+  position: fixed;
+  top: 50px;
+  right: 50px;
   cursor: pointer;
 }

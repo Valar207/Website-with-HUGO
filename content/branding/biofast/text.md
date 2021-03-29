@@ -12,4 +12,5 @@ images:
     "/images/branding/biofast/situation.jpg",
   ]
 image_description: ['test1', 'test2', 'test3', 'test4', 'test5']
+image_title: ['titre 1','titre 2','titre 3','titre 4','titre 5']
 ---

@@ -10,4 +10,5 @@ images:
     "/images/divers/sheitan3.jpg",
     "/images/divers/stickers_full.jpg",
   ]
+image_description: ['','','','coucou']
 ---

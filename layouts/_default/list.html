@@ -63,6 +63,11 @@
 
           <!-- CONTENU DU FOLDER ACTUEL -->
           {{ $.Scratch.Set "imgCount" 1 }} 
+
+          {{ $.Scratch.Set "titleCount" 1 }} 
+
+          {{ $.Scratch.Set "descCount" 1 }} 
+
           {{range .Site.Pages}} 
             {{$arrayDir := split .Dir `\`}}
             {{$index0 := index $arrayDir 0}}
@@ -73,34 +78,74 @@
             {{if (eq .Title $index0)}}
             {{if .Params.images}}
             {{ $imgArray := slice }}
+            {{ $imgDesc := slice }}
+            
+            {{ $titleArray := slice }}
+
+                {{range .Params.image_title}}
+                  {{ $titleArray = $titleArray | append .}}
+                  {{ $.Scratch.Set "titleCount" (add ($.Scratch.Get "titleCount") 1) }}
+                {{end}}
+
+                {{ $.Scratch.Set "indexTitle" 0 }} 
+
                 {{range .Params.images}}
+                <div class="imgPlusTitle">
                   <img class="imgContent activeModal{{$.Scratch.Get `modalCount`}}" index="{{$.Scratch.Get `imgCount`}}" src="{{ . }}" alt="" />
+                  <h2> {{index $titleArray ($.Scratch.Get "indexTitle")}} </h2>
+                </div>
                   {{ $imgArray = $imgArray | append .}}
 
                   {{ $.Scratch.Set "imgCount" (add ($.Scratch.Get "imgCount") 1) }}
+                  {{ $.Scratch.Set "indexTitle" (add ($.Scratch.Get "indexTitle") 1) }}
                 {{end}}
+
+                {{range .Params.image_description}}
+                  {{ $imgDesc = $imgDesc | append .}}
+                  {{ $.Scratch.Set "descCount" (add ($.Scratch.Get "descCount") 1) }}
+                {{end}}
+
                 {{if (gt (len $imgArray) 1)}}
                   {{$lastElem := sub (len $imgArray) 1}}
                   <div class="modal-bg modal-bg{{$.Scratch.Get `modalCount`}}">
                     <div class="modal">
                       <img src="images/croix_01.png" alt="" class="croix_modal">
-                      <div class="carousel-container">
-                        <div class="carousel-slide carousel-slide{{$.Scratch.Get `modalCount`}}">
-                          <div class="imgSlide imgSlide{{$.Scratch.Get `modalCount`}}" id="lastClone">
+                      <!-- <div class="carousel-container"> -->
+
+                        <div class="carousel carousel{{$.Scratch.Get `modalCount`}}">
+                          <div class="carousel_item carousel_item{{$.Scratch.Get `modalCount`}}" id="lastClone">
                             <img class="imgCarousel" src="{{index $imgArray $lastElem}}" alt="" />
+
+                            {{if (index $imgDesc $lastElem)}}
+                            <h2 class="description_img"> {{index $imgDesc $lastElem}} </h2>
+                            {{end}}
+
                           </div>
+
+                          {{ $.Scratch.Set "countDesc" 0 }} 
+
                           {{range .Params.images}}
-                            <div class="imgSlide imgSlide{{$.Scratch.Get `modalCount`}}">
+                            <div class="carousel_item carousel_item{{$.Scratch.Get `modalCount`}}">
                               <img class="imgCarousel" src="{{.}}" alt="" />
+
+                              {{if (index $imgDesc ($.Scratch.Get `countDesc`)) }}
+                              <h2 class="description_img"> {{index $imgDesc ($.Scratch.Get `countDesc`)}} </h2>
+                            {{end}}
+
                             </div>
+
+                          {{ $.Scratch.Set "countDesc" (add ($.Scratch.Get "countDesc") 1) }}
+
                           {{end}}
-                          <div class="imgSlide imgSlide{{$.Scratch.Get `modalCount`}}" id="firstClone">
+                          <div class="carousel_item carousel_item{{$.Scratch.Get `modalCount`}}" id="firstClone">
                             <img class="imgCarousel" src="{{index $imgArray 0}}" alt="" />
                           </div>
                         </div>
                         <i id="prevBtn{{$.Scratch.Get `modalCount`}}" class="prevBtn"></i>
                         <i id="nextBtn{{$.Scratch.Get `modalCount`}}" class="nextBtn"></i>
-                      </div>
+
+
+                      <!-- </div> -->
                     </div>
                   </div>
                   {{ $.Scratch.Set "modalCount" (add ($.Scratch.Get "modalCount") 1) }}
@@ -110,11 +155,11 @@
                   <div class="modal">
                     <img src="images/croix_01.png" alt="" class="croix_modal">
                     <div class="carousel-container">
-                      <div class="carousel-slide carousel-slide{{$.Scratch.Get `modalCount`}}">
-                        <div class="imgSlide imgSlide{{$.Scratch.Get `modalCount`}}" id="lastClone">
+                      <div class="carousel carousel{{$.Scratch.Get `modalCount`}}">
+                        <div class="carousel_item carousel_item{{$.Scratch.Get `modalCount`}}" id="lastClone">
                           <img class="imgCarousel" src="{{index $imgArray 0}}" alt="" />
                         </div>
-                        <div class="imgSlide imgSlide{{$.Scratch.Get `modalCount`}}" id="firstClone">
+                        <div class="carousel_item carousel_item{{$.Scratch.Get `modalCount`}}" id="firstClone">
                           <img class="imgCarousel" src="{{index $imgArray 0}}" alt="" />
                         </div>
                       </div>
@@ -208,6 +253,11 @@
 
           <!-- CONTENU DU SUB FOLDER ACTUEL -->
           {{ $.Scratch.Set "imgCountBis" 1 }} 
+
+          {{ $.Scratch.Set "titleCountBis" 1 }} 
+
+          {{ $.Scratch.Set "descCountBis" 1 }} 
+
           {{range .Site.Pages}} 
             {{$arrayDir := split .Dir `\`}}
             {{$index0 := index $arrayDir 0}}
@@ -216,51 +266,94 @@
             {{if and ($index11) (eq $index1 $index11) (not $index2)}}
             {{if .Params.images}}
             {{ $imgArrayBis := slice }}
+
+            {{ $imgDescBis := slice }}
+
+            {{ $titleArrayBis := slice }}
+
+              {{range .Params.image_title}}
+                {{ $titleArrayBis = $titleArrayBis | append .}}
+                {{ $.Scratch.Set "titleCountBis" (add ($.Scratch.Get "titleCountBis") 1) }}
+              {{end}}
+
+              {{ $.Scratch.Set "indexTitleBis" 0 }} 
+
                 {{range .Params.images}}
+                <div class="imgPlusTitle">
                   <img class="imgContent activeModal{{$.Scratch.Get `modalSubFolder`}} " index="{{$.Scratch.Get `imgCountBis`}}" src="{{ . }}" alt="" />
+                  <h2> {{index $titleArrayBis ($.Scratch.Get "indexTitleBis")}} </h2>
+                </div>
                   {{ $imgArrayBis = $imgArrayBis | append .}}
                   {{ $.Scratch.Set "imgCountBis" (add ($.Scratch.Get "imgCountBis") 1) }}
+                  {{ $.Scratch.Set "indexTitleBis" (add ($.Scratch.Get "indexTitleBis") 1) }}
                 {{end}}
+
+                {{range .Params.image_description}}
+                  {{ $imgDescBis = $imgDescBis | append .}}
+                  {{ $.Scratch.Set "descCountBis" (add ($.Scratch.Get "descCountBis") 1) }}
+                {{end}}
+
                 {{if (gt (len $imgArrayBis) 1)}}
                   {{$lastElem := sub (len $imgArrayBis) 1}}
                   <div class="modal-bg modal-bg{{$.Scratch.Get `modalSubFolder`}} ">
                     <div class="modal">
                       <img src="images/croix_01.png" alt="" class="croix_modal">
-                      <div class="carousel-container">
-                        <div class="carousel-slide carousel-slide{{$.Scratch.Get `modalSubFolder`}} ">
-                          <div class="imgSlide imgSlide{{$.Scratch.Get `modalSubFolder`}} " id="lastClone">
+                      <!-- <div class="carousel-container"> -->
+                        <div class="carousel carousel{{$.Scratch.Get `modalSubFolder`}} ">
+                          <div class="carousel_item carousel_item{{$.Scratch.Get `modalSubFolder`}} " id="lastClone">
                             <img class="imgCarousel" src="{{index $imgArrayBis $lastElem}}" alt="" />
+
+                            {{if (index $imgDescBis $lastElem)}}
+                            <h2 class="description_img"> {{index $imgDescBis $lastElem}} </h2>
+                            {{end}}
+
                           </div>
+
+                          {{ $.Scratch.Set "countDescBis" 0 }} 
+
                           {{range .Params.images}}
-                            <div class="imgSlide imgSlide{{$.Scratch.Get `modalSubFolder`}} ">
+                            <div class="carousel_item carousel_item{{$.Scratch.Get `modalSubFolder`}} ">
                               <img class="imgCarousel" src="{{.}}" alt="" />
+
+                              {{if (index $imgDescBis ($.Scratch.Get `countDescBis`)) }}
+                                <h2 class="description_img"> {{index $imgDescBis ($.Scratch.Get `countDescBis`)}} </h2>
+                              {{end}}
+
                             </div>
+
+                          {{ $.Scratch.Set "countDescBis" (add ($.Scratch.Get "countDescBis") 1) }}
+
                           {{end}}
-                          <div class="imgSlide imgSlide{{$.Scratch.Get `modalSubFolder`}} " id="firstClone">
+                          <div class="carousel_item carousel_item{{$.Scratch.Get `modalSubFolder`}} " id="firstClone">
                             <img class="imgCarousel" src="{{index $imgArrayBis 0}}" alt="" />
+
+                            {{if (index $imgDescBis 0)}}
+                            <h2 class="description_img"> {{index $imgDescBis 0}} </h2>
+                            {{end}}
+                            
                           </div>
                         </div>
                         <i id="prevBtn{{$.Scratch.Get `modalSubFolder`}}" class="prevBtn"></i>
                         <i id="nextBtn{{$.Scratch.Get `modalSubFolder`}}" class="nextBtn"></i>
-                      </div>
+                      <!-- </div> -->
                     </div>
                   </div>
                 {{else}}
                 <div class="modal-bg modal-bg{{$.Scratch.Get `modalSubFolder`}} ">
                   <div class="modal">
                     <img src="images/croix_01.png" alt="" class="croix_modal">
-                    <div class="carousel-container">
-                      <div class="carousel-slide carousel-slide{{$.Scratch.Get `modalSubFolder`}} ">
-                        <div class="imgSlide imgSlide{{$.Scratch.Get `modalSubFolder`}} " id="lastClone">
+                    <!-- <div class="carousel-container"> -->
+                      <div class="carousel carousel{{$.Scratch.Get `modalSubFolder`}} ">
+                        <div class="carousel_item carousel_item{{$.Scratch.Get `modalSubFolder`}} " id="lastClone">
                           <img class="imgCarousel" src="{{index $imgArrayBis 0}}" alt="" />
                         </div>
-                        <div class="imgSlide imgSlide{{$.Scratch.Get `modalSubFolder`}} " id="firstClone">
+                        <div class="carousel_item carousel_item{{$.Scratch.Get `modalSubFolder`}} " id="firstClone">
                           <img class="imgCarousel" src="{{index $imgArrayBis 0}}" alt="" />
                         </div>
                       </div>
                       <i id="prevBtn{{$.Scratch.Get `modalSubFolder`}}" class="prevBtn"></i>
                       <i id="nextBtn{{$.Scratch.Get `modalSubFolder`}}" class="nextBtn"></i>
-                    </div>
+                    <!-- </div> -->
                   </div>
                 </div>
                 {{end}}
@@ -332,6 +425,11 @@
 
           <!-- CONTENU DU SUB SUB FOLDER ACTUEL -->
           {{ $.Scratch.Set "imgCountTer" 1 }} 
+
+          {{ $.Scratch.Set "titleCountTer" 1 }} 
+
+          {{ $.Scratch.Set "descCountTer" 1 }} 
+
           {{range .Site.Pages}} 
             {{$arrayDir := split .Dir `\`}}
             {{$index0 := index $arrayDir 0}}
@@ -341,33 +439,74 @@
             {{if and ($index11) (eq $index2 $index22)}}
             {{if .Params.images}}
             {{ $imgArrayBis := slice }}
+
+            {{ $imgDescTer := slice }}
+
+            {{ $titleArrayTer := slice }}
+
+                {{range .Params.image_title}}
+                  {{ $titleArrayTer = $titleArrayTer | append .}}
+                  {{ $.Scratch.Set "titleCountTer" (add ($.Scratch.Get "titleCountTer") 1) }}
+                {{end}}
+
+                {{ $.Scratch.Set "indexTitleTer" 0 }} 
+
                 {{range .Params.images}}
+                <div class="imgPlusTitle">
                   <img class="imgContent activeModal{{$.Scratch.Get `modalSubSubFolder`}} " index="{{$.Scratch.Get `imgCountTer`}}" src="{{ . }}" alt="" />
+                  <h2> {{index $titleArrayTer ($.Scratch.Get "indexTitleTer")}} </h2>
+                </div>
                   {{ $imgArrayBis = $imgArrayBis | append .}}
                   {{ $.Scratch.Set "imgCountTer" (add ($.Scratch.Get "imgCountTer") 1) }}
+                  {{ $.Scratch.Set "indexTitleTer" (add ($.Scratch.Get "indexTitleTer") 1) }}
                 {{end}}
+
+                {{range .Params.image_description}}
+                  {{ $imgDescTer = $imgDescTer | append .}}
+                  {{ $.Scratch.Set "descCountTer" (add ($.Scratch.Get "descCountTer") 1) }}
+                {{end}}
+
                 {{if (gt (len $imgArrayBis) 1)}}
                   {{$lastElem := sub (len $imgArrayBis) 1}}
                   <div class="modal-bg modal-bg{{$.Scratch.Get `modalSubSubFolder`}} ">
                     <div class="modal">
                       <img src="images/croix_01.png" alt="" class="croix_modal">
-                      <div class="carousel-container">
-                        <div class="carousel-slide carousel-slide{{$.Scratch.Get `modalSubSubFolder`}} ">
-                          <div class="imgSlide imgSlide{{$.Scratch.Get `modalSubSubFolder`}} " id="lastClone">
+                      <!-- <div class="carousel-container"> -->
+                        <div class="carousel carousel{{$.Scratch.Get `modalSubSubFolder`}} ">
+                          <div class="carousel_item carousel_item{{$.Scratch.Get `modalSubSubFolder`}} " id="lastClone">
                             <img class="imgCarousel" src="{{index $imgArrayBis $lastElem}}" alt="" />
+
+                            {{if (index $imgDescTer $lastElem)}}
+                            <h2 class="description_img"> {{index $imgDescTer $lastElem}} </h2>
+                            {{end}}
+
                           </div>
+
+                          {{ $.Scratch.Set "countDescTer" 0 }} 
+
                           {{range .Params.images}}
-                            <div class="imgSlide imgSlide{{$.Scratch.Get `modalSubSubFolder`}} ">
+                            <div class="carousel_item carousel_item{{$.Scratch.Get `modalSubSubFolder`}} ">
                               <img class="imgCarousel" src="{{.}}" alt="" />
+
+                            {{if (index $imgDescTer ($.Scratch.Get `countDescTer`)) }}
+                              <h2 class="description_img"> {{index $imgDescTer ($.Scratch.Get `countDescTer`)}} </h2>
+                            {{end}}
+
                             </div>
+
+                          {{ $.Scratch.Set "countDescTer" (add ($.Scratch.Get "countDescTer") 1) }}
+
                           {{end}}
-                          <div class="imgSlide imgSlide{{$.Scratch.Get `modalSubSubFolder`}} " id="firstClone">
+                          <div class="carousel_item carousel_item{{$.Scratch.Get `modalSubSubFolder`}} " id="firstClone">
                             <img class="imgCarousel" src="{{index $imgArrayBis 0}}" alt="" />
+                            {{if (index $imgDescTer 0)}}
+                            <h2 class="description_img"> {{index $imgDescTer 0}} </h2>
+                            {{end}}
                           </div>
                         </div>
                         <i id="prevBtn{{$.Scratch.Get `modalSubSubFolder`}}" class="prevBtn"></i>
                         <i id="nextBtn{{$.Scratch.Get `modalSubSubFolder`}}" class="nextBtn"></i>
-                      </div>
+                      <!-- </div> -->
                     </div>
                   </div>
                 {{else}}
@@ -375,11 +514,11 @@
                   <div class="modal">
                     <img src="images/croix_01.png" alt="" class="croix_modal">
                     <div class="carousel-container">
-                      <div class="carousel-slide carousel-slide{{$.Scratch.Get `modalSubSubFolder`}} ">
-                        <div class="imgSlide imgSlide{{$.Scratch.Get `modalSubSubFolder`}} " id="lastClone">
+                      <div class="carousel carousel{{$.Scratch.Get `modalSubSubFolder`}} ">
+                        <div class="carousel_item carousel_item{{$.Scratch.Get `modalSubSubFolder`}} " id="lastClone">
                           <img class="imgCarousel" src="{{index $imgArrayBis 0}}" alt="" />
                         </div>
-                        <div class="imgSlide imgSlide{{$.Scratch.Get `modalSubSubFolder`}} " id="firstClone">
+                        <div class="carousel_item carousel_item{{$.Scratch.Get `modalSubSubFolder`}} " id="firstClone">
                           <img class="imgCarousel" src="{{index $imgArrayBis 0}}" alt="" />
                         </div>
                       </div>

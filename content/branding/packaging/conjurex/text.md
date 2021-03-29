@@ -9,4 +9,6 @@ images:
     "/images/branding/packaging/conjurex/patron-demonil.jpg",
     "/images/branding/packaging/conjurex/patron-esoterium.jpg",
   ]
+image_description: ['cocooooooooooooo','','hello les amis']
+image_title: ['coucou','hello','les amis']
 ---

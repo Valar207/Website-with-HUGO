@@ -15,4 +15,5 @@ images:
     "/images/branding/tempo/tempo-07.jpg",
     "/images/branding/tempo/tempo-08.jpg",
   ]
+image_description: ['test1', 'test2', 'test3', 'test4', 'test5', 'test5', 'test5', 'test5', 'test5']
 ---
