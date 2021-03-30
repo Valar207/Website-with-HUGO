@@ -109,6 +109,7 @@
                   {{$lastElem := sub (len $imgArray) 1}}
                   <div class="modal-bg modal-bg{{$.Scratch.Get `modalCount`}}">
                     <div class="modal">
+                      <div class="overflow_croix">
                       <img src="images/croix_01.png" alt="" class="croix_modal">
                       <!-- <div class="carousel-container"> -->
 
@@ -141,6 +142,7 @@
                             <img class="imgCarousel" src="{{index $imgArray 0}}" alt="" />
                           </div>
                         </div>
+                      </div>
                         <i id="prevBtn{{$.Scratch.Get `modalCount`}}" class="prevBtn"></i>
                         <i id="nextBtn{{$.Scratch.Get `modalCount`}}" class="nextBtn"></i>
 
@@ -297,7 +299,8 @@
                   {{$lastElem := sub (len $imgArrayBis) 1}}
                   <div class="modal-bg modal-bg{{$.Scratch.Get `modalSubFolder`}} ">
                     <div class="modal">
-                      <img src="images/croix_01.png" alt="" class="croix_modal">
+                      <div class="overflow_croix">
+                        <img src="images/croix_01.png" alt="" class="croix_modal">
                       <!-- <div class="carousel-container"> -->
                         <div class="carousel carousel{{$.Scratch.Get `modalSubFolder`}} ">
                           <div class="carousel_item carousel_item{{$.Scratch.Get `modalSubFolder`}} " id="lastClone">
@@ -333,6 +336,7 @@
                             
                           </div>
                         </div>
+                        </div>
                         <i id="prevBtn{{$.Scratch.Get `modalSubFolder`}}" class="prevBtn"></i>
                         <i id="nextBtn{{$.Scratch.Get `modalSubFolder`}}" class="nextBtn"></i>
                       <!-- </div> -->
@@ -341,6 +345,7 @@
                 {{else}}
                 <div class="modal-bg modal-bg{{$.Scratch.Get `modalSubFolder`}} ">
                   <div class="modal">
+                    <div class="overflow_croix">
                     <img src="images/croix_01.png" alt="" class="croix_modal">
                     <!-- <div class="carousel-container"> -->
                       <div class="carousel carousel{{$.Scratch.Get `modalSubFolder`}} ">
@@ -351,6 +356,7 @@
                           <img class="imgCarousel" src="{{index $imgArrayBis 0}}" alt="" />
                         </div>
                       </div>
+                    </div>
                       <i id="prevBtn{{$.Scratch.Get `modalSubFolder`}}" class="prevBtn"></i>
                       <i id="nextBtn{{$.Scratch.Get `modalSubFolder`}}" class="nextBtn"></i>
                     <!-- </div> -->
@@ -470,6 +476,7 @@
                   {{$lastElem := sub (len $imgArrayBis) 1}}
                   <div class="modal-bg modal-bg{{$.Scratch.Get `modalSubSubFolder`}} ">
                     <div class="modal">
+                      <div class="overflow_croix">
                       <img src="images/croix_01.png" alt="" class="croix_modal">
                       <!-- <div class="carousel-container"> -->
                         <div class="carousel carousel{{$.Scratch.Get `modalSubSubFolder`}} ">
@@ -504,6 +511,7 @@
                             {{end}}
                           </div>
                         </div>
+                      </div>
                         <i id="prevBtn{{$.Scratch.Get `modalSubSubFolder`}}" class="prevBtn"></i>
                         <i id="nextBtn{{$.Scratch.Get `modalSubSubFolder`}}" class="nextBtn"></i>
                       <!-- </div> -->
@@ -512,6 +520,7 @@
                 {{else}}
                 <div class="modal-bg modal-bg{{$.Scratch.Get `modalSubSubFolder`}} ">
                   <div class="modal">
+                    <div class="overflow_croix">
                     <img src="images/croix_01.png" alt="" class="croix_modal">
                     <div class="carousel-container">
                       <div class="carousel carousel{{$.Scratch.Get `modalSubSubFolder`}} ">
@@ -522,6 +531,7 @@
                           <img class="imgCarousel" src="{{index $imgArrayBis 0}}" alt="" />
                         </div>
                       </div>
+                    </div>
                       <i id="prevBtn{{$.Scratch.Get `modalSubSubFolder`}}" class="prevBtn"></i>
                       <i id="nextBtn{{$.Scratch.Get `modalSubSubFolder`}}" class="nextBtn"></i>
                     </div>
@@ -545,25 +555,26 @@
     {{ $.Scratch.Set "counter" (add ($.Scratch.Get "counter") 1) }} {{end}} {{end}} {{end}}
 
 
-    <footer class="footer">
-      <div class="left-footer">
-        <img class="B6circle" src="images/B6_round.png" alt="" />
-        <div class="line"></div>
-        {{ $.Scratch.Set "counter" 1 }} {{range .Site.Pages}} {{if .Dir}} {{ $currentDir := trim .Dir `\`}} {{if not (in $currentDir `\`)}}
-        <div id="f-{{$.Scratch.Get `counter`}}" class="folder-footer">
-          <img src="images/dossier-ouvert.png" alt="" />
-          <p>{{$currentDir}}</p>
-        </div>
-        {{ $.Scratch.Set "counter" (add ($.Scratch.Get "counter") 1) }} {{end}} {{end}} {{end}}
+    
+  </body>
+  <footer class="footer">
+    <img class="B6circle justify-start" src="images/B6_round.png" alt="" />
+    <div class="line justify-start"></div>
+    <div class="left-footer justify-start">
+      {{ $.Scratch.Set "counter" 1 }} {{range .Site.Pages}} {{if .Dir}} {{ $currentDir := trim .Dir `\`}} {{if not (in $currentDir `\`)}}
+      <div id="f-{{$.Scratch.Get `counter`}}" class="folder-footer">
+        <img src="images/dossier-ouvert.png" alt="" />
+        <p>{{$currentDir}}</p>
       </div>
-      <div class="right-footer">
-        <div class="line"></div>
-        <div class="time-footer">
-          <div id="DigitalCLOCK" class="clock" onload="showTime()"></div>
-        </div>
+      {{ $.Scratch.Set "counter" (add ($.Scratch.Get "counter") 1) }} {{end}} {{end}} {{end}}
+    </div>
+    <div class="right-footer">
+      <div class="line"></div>
+      <div class="time-footer">
+        <div id="DigitalCLOCK" class="clock" onload="showTime()"></div>
       </div>
-    </footer>
-
+    </div>
+  </footer>
     <script src="js/functions.js"></script>
     <script>
       $("div.windows").map(function () {
@@ -572,8 +583,7 @@
           minWidth: 450,
           minHeight: 400,
         });
-        $("#" + this.id).draggable();
+        $("#" + this.id).draggable({ scroll: false });
       });
-    </script>
-  </body>
+      </script>
 </html>

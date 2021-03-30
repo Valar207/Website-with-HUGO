@@ -1,6 +1,5 @@
 let zindex = 0;
 function Open(windowId) {
-  console.log(windowId);
   let w = document.getElementById(windowId);
   w.style.visibility = "visible";
   for (let w of windows) {
@@ -164,7 +163,6 @@ showTime();
 // MODAL + CAROUSEL
 
 // var test = document.querySelector('[class^="activeModal"]');
-// console.log(test);
 let croix_modal = document.querySelectorAll(".croix_modal");
 
 function createArray(selector, count) {
@@ -191,37 +189,32 @@ const prevBtn = createArray("#prevBtn{#}", 99);
 const nextBtn = createArray("#nextBtn{#}", 99);
 const carouselSlide = createArray(".carousel{#}", 99);
 const carouselImages = createArrayAll(".carousel_item{#}", 99);
+let counter = 0;
 
 modalBtn.forEach((m, i) => {
   if (m[0]) {
     var size = carouselSlide[i].clientWidth;
-    console.log(size);
     m.forEach((el) => {
       el.addEventListener("click", function (e) {
         modalBg[i].classList.add("bg-active");
-        console.log(e.target);
         counter = parseInt(e.target.getAttribute("index"));
-        console.log(counter);
         carouselSlide[i].style.transform = "translateX(" + -size * counter + "px)";
         carouselSlide[i].style.transition = "transform 0s";
       });
     });
-    window.addEventListener("resize", () => {
-      carouselSlide[i].style.transition = "none";
-      size = carouselSlide[i].clientWidth;
-      carouselSlide[i].style.transform = "translateX(" + -size * counter + "px)";
-    });
+      window.addEventListener("resize", () => {
+        carouselSlide[i].style.transition = "none";
+        size = carouselSlide[i].clientWidth;
+        carouselSlide[i].style.transform = "translateX(" + -size * counter + "px)";
+      });
     nextBtn[i].addEventListener("click", () => {
-      console.log(counter);
       if (counter >= carouselImages[i].length - 1) return;
-      // console.log(counter);
       carouselSlide[i].style.transition = "transform 0.0001s ease-in-out";
       counter++;
       carouselSlide[i].style.transform = "translateX(" + -size * counter + "px)";
     });
     prevBtn[i].addEventListener("click", () => {
       if (counter <= 0) return;
-      // console.log(counter);
       carouselSlide[i].style.transition = "transform 0.0001s ease-in-out";
       counter--;
       carouselSlide[i].style.transform = "translateX(" + -size * counter + "px)";
@@ -255,120 +248,3 @@ modalBtn.forEach((m, i) => {
     });
   }
 });
-
-// var modalBtn = [document.querySelectorAll(".activeModal1"), document.querySelectorAll(".activeModal2")];
-// var modalBg = [document.querySelector(".modal-bg1"), document.querySelector(".modal-bg2")];
-// const prevBtn = [document.querySelector("#prevBtn1"), document.querySelector("#prevBtn2")];
-// console.log(prevBtn);
-// const nextBtn = [document.querySelector("#nextBtn1"), document.querySelector("#nextBtn2")];
-// const carouselSlide = [document.querySelector(".carousel1"), document.querySelector(".carousel2")];
-// const carouselImages = [document.querySelectorAll(".carousel_item1"),document.querySelectorAll(".carousel_item2")];
-
-// var modalBtn = document.querySelectorAll(".activeModal");
-// var modalBtn1 = document.querySelectorAll(".activeModal1");
-
-// var modalBg = document.querySelector(".modal-bg");
-// var modalBg1 = document.querySelector(".modal-bg1");
-
-// const prevBtn = document.querySelector("#prevBtn");
-// const prevBtn1 = document.querySelector("#prevBtn1");
-
-// const nextBtn = document.querySelector("#nextBtn");
-// const nextBtn1 = document.querySelector("#nextBtn1");
-
-// const carouselSlide = document.querySelector(".carousel");
-// const carouselSlide1 = document.querySelector(".carousel1");
-
-// const carouselImages = document.querySelectorAll(".carousel_item");
-// const carouselImages1 = document.querySelectorAll(".carousel_item1");
-
-// modalBtn.forEach((el) =>
-//   el.addEventListener("click", function (e) {
-//     modalBg.classList.add("bg-active");
-//     counter = parseInt(e.target.getAttribute("index"));
-//     carouselSlide.style.transform = "translateX(" + -size * counter + "px)";
-//     carouselSlide.style.transition = "transform 0s";
-//   })
-// );
-
-// modalBtn1.forEach((el) =>
-//   el.addEventListener("click", function (e) {
-//     modalBg1.classList.add("bg-active");
-//     counter = parseInt(e.target.getAttribute("index"));
-//     carouselSlide1.style.transform = "translateX(" + -size * counter + "px)";
-//     carouselSlide1.style.transition = "transform 0s";
-//   })
-// );
-
-// CAROUSEL
-
-// nextBtn.addEventListener("click", () => {
-//   if (counter >= carouselImages.length - 1) return;
-//   // console.log(counter);
-//   carouselSlide.style.transition = "transform 0.4s ease-in-out";
-//   counter++;
-//   carouselSlide.style.transform = "translateX(" + -size * counter + "px)";
-// });
-// prevBtn.addEventListener("click", () => {
-//   if (counter <= 0) return;
-//   console.log(counter);
-//   carouselSlide.style.transition = "transform 0.4s ease-in-out";
-//   counter--;
-//   carouselSlide.style.transform = "translateX(" + -size * counter + "px)";
-// });
-
-// nextBtn1.addEventListener("click", () => {
-//   if (counter >= carouselImages1.length - 1) return;
-//   console.log(counter);
-//   carouselSlide1.style.transition = "transform 0.4s ease-in-out";
-//   counter++;
-//   carouselSlide1.style.transform = "translateX(" + -size * counter + "px)";
-// });
-// prevBtn1.addEventListener("click", () => {
-//   if (counter <= 0) return;
-//   console.log(counter);
-//   carouselSlide1.style.transition = "transform 0.4s ease-in-out";
-//   counter--;
-//   carouselSlide1.style.transform = "translateX(" + -size * counter + "px)";
-// });
-
-// carouselSlide.addEventListener("transitionend", () => {
-//   if (carouselImages[counter].id === "lastClone") {
-//     carouselSlide.style.transition = "none";
-//     counter = carouselImages.length - 2;
-//     carouselSlide.style.transform = "translateX(" + -size * counter + "px)";
-//   }
-//   if (carouselImages[counter].id === "firstClone") {
-//     carouselSlide.style.transition = "none";
-//     counter = carouselImages.length - counter;
-//     carouselSlide.style.transform = "translateX(" + -size * counter + "px)";
-//   }
-// });
-
-// carouselSlide1.addEventListener("transitionend", () => {
-//   if (carouselImages1[counter].id === "lastClone") {
-//     carouselSlide1.style.transition = "none";
-//     counter = carouselImages1.length - 2;
-//     carouselSlide1.style.transform = "translateX(" + -size * counter + "px)";
-//   }
-//   if (carouselImages1[counter].id === "firstClone") {
-//     carouselSlide1.style.transition = "none";
-//     counter = carouselImages1.length - counter;
-//     carouselSlide1.style.transform = "translateX(" + -size * counter + "px)";
-//   }
-// });
-
-//CLOSE MODAL
-// window.addEventListener("click", (e) => {
-//   if (e.target === modalBg) {
-//     modalBg.classList.remove("bg-active");
-//     counter = null;
-//   }
-// });
-
-// window.addEventListener("click", (e) => {
-//   if (e.target === modalBg1) {
-//     modalBg1.classList.remove("bg-active");
-//     counter = null;
-//   }
-// });

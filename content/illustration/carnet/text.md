@@ -11,7 +11,6 @@ images:
     "/images/illustration/carnet/radostmoya.jpg",
     "/images/illustration/carnet/runes.jpg",
     "/images/illustration/carnet/verticales.jpg",
-    "/images/illustration/carnet/ville (1).jpg",
     "/images/illustration/carnet/ville.jpg",
   ]
 ---
