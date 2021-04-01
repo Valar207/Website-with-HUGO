@@ -191,33 +191,70 @@ const carouselSlide = createArray(".carousel{#}", 99);
 const carouselImages = createArrayAll(".carousel_item{#}", 99);
 let counter = 0;
 
+var carouselArrows;
+
 modalBtn.forEach((m, i) => {
   if (m[0]) {
     var size = carouselSlide[i].clientWidth;
     m.forEach((el) => {
       el.addEventListener("click", function (e) {
+        console.log("iciiiiiiiiiiiiiiiiii");
         modalBg[i].classList.add("bg-active");
         counter = parseInt(e.target.getAttribute("index"));
+
+        console.log("counter " + counter);
         carouselSlide[i].style.transform = "translateX(" + -size * counter + "px)";
         carouselSlide[i].style.transition = "transform 0s";
+
+        //KEY FOR MODAL NEXT AND PREV
+        carouselArrows = (e) => {
+          if (e.code === "ArrowRight") {
+            if (counter >= carouselImages[i].length - 1) return;
+            carouselSlide[i].style.transition = "transform 0.0001s ease-in-out";
+            counter++;
+            carouselSlide[i].style.transform = "translateX(" + -size * counter + "px)";
+          }
+          if (e.code === "ArrowLeft") {
+            if (counter <= 0) return;
+            carouselSlide[i].style.transition = "transform 0.0001s ease-in-out";
+            counter--;
+            carouselSlide[i].style.transform = "translateX(" + -size * counter + "px)";
+          }
+          console.log("counter " + counter);
+        };
+
+        // window.removeEventListener("keydown", carouselArrows);
+
+        window.addEventListener("keydown", carouselArrows);
+
+        // window.addEventListener("keydown", carouselKey);
+
+        // document.addEventListener("keydown", function (e) {
+        //   console.log(e);
+        // });
       });
     });
-      window.addEventListener("resize", () => {
-        carouselSlide[i].style.transition = "none";
-        size = carouselSlide[i].clientWidth;
-        carouselSlide[i].style.transform = "translateX(" + -size * counter + "px)";
-      });
+
+    window.addEventListener("resize", () => {
+      carouselSlide[i].style.transition = "none";
+      size = carouselSlide[i].clientWidth;
+      carouselSlide[i].style.transform = "translateX(" + -size * counter + "px)";
+    });
+
     nextBtn[i].addEventListener("click", () => {
       if (counter >= carouselImages[i].length - 1) return;
       carouselSlide[i].style.transition = "transform 0.0001s ease-in-out";
       counter++;
       carouselSlide[i].style.transform = "translateX(" + -size * counter + "px)";
+      console.log("counter " + counter);
     });
+
     prevBtn[i].addEventListener("click", () => {
       if (counter <= 0) return;
       carouselSlide[i].style.transition = "transform 0.0001s ease-in-out";
       counter--;
       carouselSlide[i].style.transform = "translateX(" + -size * counter + "px)";
+      console.log("counter " + counter);
     });
 
     carouselSlide[i].addEventListener("transitionend", () => {
@@ -237,6 +274,7 @@ modalBtn.forEach((m, i) => {
       if (e.target === modalBg[i]) {
         modalBg[i].classList.remove("bg-active");
         counter = null;
+        window.removeEventListener("keydown", carouselArrows);
       }
     });
 
@@ -244,6 +282,7 @@ modalBtn.forEach((m, i) => {
       croix.addEventListener("click", (e) => {
         modalBg[i].classList.remove("bg-active");
         counter = null;
+        window.removeEventListener("keydown", carouselArrows);
       });
     });
   }
