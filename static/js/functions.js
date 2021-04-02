@@ -1,5 +1,6 @@
 let zindex = 0;
 function Open(windowId) {
+  console.log(windowId);
   let w = document.getElementById(windowId);
   w.style.visibility = "visible";
   for (let w of windows) {
