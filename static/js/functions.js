@@ -17,6 +17,7 @@ function Open(windowId) {
     f.classList.remove("activeFF");
   }
 }
+
 function Close(windowId) {
   document.getElementById(windowId).style.visibility = "hidden";
   let foldersFooter = document.querySelector(".footer").querySelectorAll("*[id]");
@@ -51,7 +52,37 @@ function FullScreen(w) {
 //OPEN CONTACT
 let contact = document.querySelector(".computer");
 contact.onclick = function () {
-  Open("contact");
+  Open("foldercontact");
+
+  //CHECK IF FOOTER CONTACT ALREADY EXIST
+  const checkContactFooter = document.getElementById("f-contact");
+
+  if (!checkContactFooter) {
+    let newF = document.createElement("div");
+    let p = document.createElement("p");
+    let img = document.createElement("IMG");
+    img.setAttribute("src", "images/ordi.png");
+    newF.appendChild(img);
+    newF.appendChild(p);
+    let node = document.createTextNode(document.querySelector(".computer").attributes["name"].value);
+    p.appendChild(node);
+    let element = document.querySelector(".left-footer");
+    newF.id = "f-contact";
+    newF.className = "folder-footer";
+    element.appendChild(newF);
+    newF.classList.add("activeFF");
+  }
+  if (checkContactFooter) checkContactFooter.classList.add("activeFF");
+
+  //RESELECT FOLDERS FOOTERS CAUSE THERE IS ONE NEW
+  foldersFooter = document.querySelector(".footer").querySelectorAll("*[id]");
+  for (let f of foldersFooter) {
+    let id = f.id.split("f-")[1];
+    document.getElementById(f.id).onclick = function () {
+      Open("folder" + id);
+      f.classList.add("activeFF");
+    };
+  }
 };
 
 //OPEN WINDOWS WITH FOLDER FOOTER
@@ -92,6 +123,7 @@ for (let f of fitems) {
 
       //RESELECT FOLDER FOOTER CAUSE THERE IS ONE NEW
       foldersFooter = document.querySelector(".footer").querySelectorAll("*[id]");
+      console.log(foldersFooter);
       for (let f of foldersFooter) {
         let id = f.id.split("f-")[1];
         document.getElementById(f.id).onclick = function () {

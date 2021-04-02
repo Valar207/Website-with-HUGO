@@ -11,6 +11,13 @@ images:
     "/images/branding/biofast/planche.jpg",
     "/images/branding/biofast/situation.jpg",
   ]
-image_description: ['test1', 'test2', 'test3', 'test4', 'test5']
-image_title: ['titre 1','titre 2','titre 3','titre 4','titre 5']
+image_description:
+  [
+    "Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque exercitationem aliquid, rerum voluptatum repellat expedita nobis excepturi at rem architecto soluta illum vel repellendus quo, nisi veritatis quis obcaecati delectus?",
+    "Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque exercitationem aliquid, rerum voluptatum repellat expedita nobis excepturi at rem architecto soluta illum vel repellendus quo, nisi veritatis quis obcaecati delectus?",
+    "Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque exercitationem aliquid, rerum voluptatum repellat expedita nobis excepturi at rem architecto soluta illum vel repellendus quo, nisi veritatis quis obcaecati delectus?",
+    "test4",
+    "Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque exercitationem aliquid, rerum voluptatum repellat expedita nobis excepturi at rem architecto soluta illum vel repellendus quo, nisi veritatis quis obcaecati delectus?",
+  ]
+image_title: ["titre 1", "titre 2", "titre 3", "titre 4", "titre 5"]
 ---
