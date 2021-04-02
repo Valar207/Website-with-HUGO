@@ -1,7 +1,7 @@
 ---
 title: "Musée d'Amiens"
 date: 2021-01-15T17:49:10+01:00
-draft: true
+draft: false
 description: "Réalisation d'affiches, du plan-guide, de brochures et de cartels pour le musée d'art et d'archéologie de Picardie - Amiens. 2020"
 images:
   [
@@ -16,4 +16,18 @@ images:
     "/images/musées/Musée d_Amiens/MdP 13.jpg",
     "/images/musées/Musée d_Amiens/MdP 14 (1).jpg",
   ]
+image_description:
+  [
+    "description 1",
+    "description 1",
+    "description 1",
+    "description 1",
+    "description 1",
+    "description 1",
+    "description 1",
+    "description 1",
+    "description 1",
+    "description 1",
+  ]
+image_title: ["titre 1", "titre 2", "titre 3", "titre 3", "titre 3", "titre 3", "titre 3", "titre 3", "titre 3", "titre 3"]
 ---

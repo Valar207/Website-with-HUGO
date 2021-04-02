@@ -1,7 +1,7 @@
 ---
 title: "Musée d'Épernay"
 date: 2021-01-15T17:49:10+01:00
-draft: true
+draft: false
 description: "Illustrations mettant en scène une mascotte pour le Musée du vin de Champagne et d'archéologie régionale d'Épernay. Les plaques constituent un parcours didactique et permettent d'en apprendre plus sur l'histoire du champagne et de la région au travers de questions/réponses."
 images:
   [
@@ -15,4 +15,17 @@ images:
     "/images/musées/Musée d_Épernay/Plan de travail 1v.png",
     "/images/musées/Musée d_Épernay/QR-planche.png",
   ]
+image_description:
+  [
+    "description 1",
+    "description 1",
+    "description 1",
+    "description 1",
+    "description 1",
+    "description 1",
+    "description 1",
+    "description 1",
+    "description 1",
+  ]
+image_title: ["titre 1", "titre 2", "titre 3", "titre 3", "titre 3", "titre 3", "titre 3", "titre 3", "titre 3"]
 ---

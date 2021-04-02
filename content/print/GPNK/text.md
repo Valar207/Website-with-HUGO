@@ -1,7 +1,7 @@
 ---
 title: "GPNK"
 date: 2021-01-15T17:49:10+01:00
-draft: true
+draft: false
 description: "GPNK est le consumer magazine pour la marque de Gosha Rubchinskiy, un photographe et créateur de mode russe. L’objectif de ce magazine est de décrire et de comprendre l’intérêt naissant chez les occidentaux pour les pays de l’Est et la Russie en particulier ; de saisir le mode de vie et d’expression si particuliers de cette génération post-soviétique qui tente de s’en sortir. 2016"
 images:
   [
@@ -13,4 +13,6 @@ images:
     "/images/print/GPNK/09.jpg",
     "/images/print/GPNK/couv.jpg",
   ]
+image_description: ["description 1", "description 1", "description 1", "description 1", "description 1", "description 1", "description 1"]
+image_title: ["titre 1", "titre 2", "titre 3", "titre 3", "titre 3", "titre 3", "titre 3"]
 ---

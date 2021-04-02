@@ -1,7 +1,7 @@
 ---
 title: "kewb"
 date: 2021-01-15T17:49:10+01:00
-draft: true
+draft: false
 description: "KEWB est une police développée pour moi-même depuis plusieurs années, mais que j’ai eu par la suite l’occasion d’utiliser dans le cadre de projets. Très caractéristique, elle est basée sur une simple grille de 3 par 3. Le concept fondamental est l’aspect ludique de la police. Chaque lettre est conçue comme un module, elles sont faites pour s’empiler, s’imbriquer, se construire les unes avec les autres, pour remplir l’espace en deux ou en trois dimensions."
 images:
   [
@@ -11,4 +11,6 @@ images:
     "/images/kewb/KEWB.png",
     "/images/kewb/specimen.png",
   ]
+image_description: ["description 1", "description 1", "description 1", "description 1", "description 1"]
+image_title: ["titre 1", "titre 2", "titre 3", "titre 3", "titre 3"]
 ---

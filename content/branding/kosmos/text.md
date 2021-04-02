@@ -1,7 +1,7 @@
 ---
 title: "kosmos"
 date: 2021-01-15T17:49:10+01:00
-draft: true
+draft: false
 description: ""
 images:
   [
@@ -22,5 +22,45 @@ images:
     "/images/branding/kosmos/kosmos-allpages-charte.png",
     "/images/branding/kosmos/kosmos-allpages-prez.jpg",
     "/images/branding/kosmos/stand01.jpg",
+  ]
+image_description:
+  [
+    "description 1",
+    "description 1",
+    "description 1",
+    "description 1",
+    "description 1",
+    "description 1",
+    "description 1",
+    "description 1",
+    "description 1",
+    "description 1",
+    "description 1",
+    "description 1",
+    "description 1",
+    "description 1",
+    "description 1",
+    "description 1",
+    "description 1",
+  ]
+image_title:
+  [
+    "titre 1",
+    "titre 2",
+    "titre 3",
+    "titre 4",
+    "titre 5",
+    "titre 5",
+    "titre 5",
+    "titre 5",
+    "titre 5",
+    "titre 5",
+    "titre 5",
+    "titre 5",
+    "titre 5",
+    "titre 5",
+    "titre 5",
+    "titre 5",
+    "titre 5",
   ]
 ---

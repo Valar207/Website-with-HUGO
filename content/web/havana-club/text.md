@@ -1,7 +1,7 @@
 ---
 title: "havana-club"
 date: 2021-01-15T17:49:10+01:00
-draft: true
+draft: false
 description: "texte de havana-club"
 images:
   [
@@ -12,4 +12,6 @@ images:
     "/images/web/havana-club/havanaclub_fin_screen-05-projects.jpg",
     "/images/web/havana-club/havanaclub_fin_screen-06-products.jpg",
   ]
+image_description: ["", "description 1", "description 1", "description 1", "description 1", "description 1"]
+image_title: ["titre 1", "titre 2", "titre 3", "titre 3", "titre 3", "titre 3"]
 ---
