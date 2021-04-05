@@ -60,7 +60,7 @@ contact.onclick = function () {
 
   if (!checkContactFooter) {
     let newF = document.createElement("div");
-    let p = document.createElement("p");
+    let p = document.createElement("h5");
     let img = document.createElement("IMG");
     img.setAttribute("src", "images/ordi.png");
     newF.appendChild(img);
@@ -116,7 +116,7 @@ for (let f of fitems) {
     } else {
       //CREATE NEW FOOTER FOLDER
       let newF = document.createElement("div");
-      let p = document.createElement("p");
+      let p = document.createElement("h5");
       let img = document.createElement("IMG");
       img.setAttribute("src", "images/dossier-ouvert.png");
       newF.appendChild(img);

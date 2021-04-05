@@ -47,7 +47,7 @@
     {{ $currentDir := trim .Dir `\`}} 
     {{if not (in $currentDir `\`)}}
 
-    <div id="folder{{$.Scratch.Get `counter`}}" class="windows brandingW active-w">
+    <div id="folder{{$.Scratch.Get `counter`}}" style="top: {{ index (seq 150 500 | shuffle) 0 }}px; left: {{ index (seq 300 | shuffle) 0 }}px" class="windows brandingW active-w">
       <div class="window-header">
         <div class="header-left">
           <img class="folder-header" src="images/dossier-ouvert-black.png" alt="" />
@@ -203,7 +203,7 @@
     </div>
     {{ $.Scratch.Set "counter" (add ($.Scratch.Get "counter") 1) }} {{end}} {{end}} {{end}}
 
-    <div folderanchor="contact" id="foldercontact" class="windows contactW active-w">
+    <div folderanchor="contact" id="foldercontact" style="top: {{ index (seq 150 200 | shuffle) 0 }}px; left: {{ index (seq 300 | shuffle) 0 }}px" class="windows contactW active-w">
       <div class="window-header">
         <div class="header-left">
           <img class="folder-header contact" src="images/ordi.png" alt="" />
@@ -248,7 +248,7 @@
 
             {{ $index1trim := replaceRE "'" "" (replaceRE "é" "e" (replaceRE "(\\s)" ""  $index1))}}
 
-          <div id='folder{{ $index1trim }}{{$.Scratch.Get `counter`}}' class="windows editionW active-w">
+          <div id='folder{{ $index1trim }}{{$.Scratch.Get `counter`}}' style="top: {{ index (seq 150 500 | shuffle) 0 }}px; left: {{ index (seq 300 | shuffle) 0 }}px" class="windows editionW active-w">
             <div class="window-header">
               <div class="header-left">
                 <img class="folder-header" src="images/dossier-ouvert-black.png" alt="" />
@@ -428,7 +428,7 @@
                 {{$index11 := index $arrayDir 1}}
                 {{$index2 := index $arrayDir 2}}
                 {{if and (and $index1 $index2) (eq $index1 $index11)}}
-                  <div id="folder{{$index2}}{{$.Scratch.Get `counter`}}" class="windows editionW active-w">
+                  <div id="folder{{$index2}}{{$.Scratch.Get `counter`}}" style="top: {{ index (seq 150 500 | shuffle) 0 }}px; left: {{ index (seq 300 | shuffle) 0 }}px" class="windows editionW active-w">
                     <div class="window-header">
                       <div class="header-left">
                         <img class="folder-header" src="images/dossier-ouvert-black.png" alt="" />
