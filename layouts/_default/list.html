@@ -220,12 +220,12 @@
         <h2>mail : <a id="link" href="mailto:lucas.bessis@gmail.com">lucas.bessis@gmail.com</a></h2>
         <h2>phone : 06 47 81 50 70</h2>
         <h2>instagram : <a id="link" href="https://www.instagram.com/l.bvi/" target="_blank">@l.bvi</a></h2>
-        <h2>CV de Lucas : <a id="link" target="_blank" href="/images/diplôme 42.pdf">Mon CV</a>.</h2>
+        <h2>CV de Lucas : <a id="link" target="_blank" href="/images/CV-LucasBessis-2021.pdf">Mon CV</a>.</h2>
         <h2> --- </h2>
 
         <h4>Webdesign by Lucas Bessis</h4>
         <h4>Developped by Valentin Rossi : <a id="link" href="https://github.com/Valar207" target="_blank">GitHub</a> - <a id="link" href="https://www.linkedin.com/in/valentin-rossi-8a5639a6/" target="_blank">Linkedin</a></h4>
-        <h4>Typeface: Px Grotesk Screen by  <a id="link" href="https://optimo.ch/" target="_blank">[Optimo]</a></h4>
+        <h4>Typeface: 'Px Grotesk Screen' by  <a id="link" href="https://optimo.ch/" target="_blank">Optimo</a></h4>
       </div>
     </div>
 
@@ -590,12 +590,12 @@
     <script src="js/functions.js"></script>
     <script>
       $("div.windows").map(function () {
-        $("#" + this.id).resizable({
+        $("#" + this.id.replace('.','\\.')).resizable({
           handles: "all",
           minWidth: 450,
           minHeight: 200,
         });
-        $("#" + this.id).draggable({ scroll: false });
+        $("#" + this.id.replace('.','\\.')).draggable({ scroll: false });
       });
       </script>
 </html>

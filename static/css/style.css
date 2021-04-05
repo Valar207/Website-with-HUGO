@@ -137,6 +137,17 @@ p {
   box-shadow: 8px 9px 10px 0px rgba(0, 0, 0, 0.91);
 }
 
+.contactW {
+  background-color: white;
+  width: 800px;
+  height: 550px;
+  min-width: 300px;
+  min-height: 100px;
+  position: absolute;
+  visibility: hidden;
+  box-shadow: 8px 9px 10px 0px rgba(0, 0, 0, 0.91);
+}
+
 .window-content {
   display: flex;
   position: absolute;
@@ -182,6 +193,7 @@ p {
 .foldersInW {
   cursor: pointer;
   margin: 1rem;
+  width: 110px;
 }
 .foldersInW img {
   height: 3rem;
@@ -191,7 +203,7 @@ p {
   border-left: 1px solid white;
   height: 100%;
   min-width: 100px;
-  max-width: 200px;
+  max-width: 250px;
   float: right;
   padding: 1rem;
   overflow-y: auto;
@@ -261,6 +273,7 @@ p {
   text-align: center;
   cursor: pointer;
   margin: 30px;
+  width: 110px;
 }
 
 .folder > img {
@@ -644,11 +657,12 @@ footer {
   .right-content {
     border-top: 1px solid white;
     border-left: none;
-    height: 10%;
+    height: auto;
+    max-height: 20%;
     max-width: 100%;
     float: left;
     bottom: 0;
-    padding: 1rem;
+    padding: 0.5rem;
     overflow-y: auto;
     word-wrap: break-word;
   }
@@ -661,7 +675,7 @@ footer {
     color: rgb(230, 215, 134);
     display: flex;
     flex-wrap: wrap;
-    justify-content: flex-start;
+    justify-content: space-around;
     overflow-y: scroll;
   }
 }
