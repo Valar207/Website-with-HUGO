@@ -513,6 +513,9 @@ footer {
   color: black;
   /* cursor: pointer; */
   cursor: url(/images/fleche_gauche.png), auto;
+  align-items: center;
+  display: flex;
+  justify-content: flex-start;
 }
 
 .nextBtn {
@@ -526,10 +529,22 @@ footer {
   font-size: 30px;
   color: black;
   cursor: url(/images/fleche_droite.png), auto;
+  align-items: center;
+  display: flex;
+  justify-content: flex-end;
 }
 
 .ui-icon-gripsmall-diagonal-se {
   background-image: url("");
+}
+
+.fa-chevron-right:before {
+  color: transparent;
+  margin: 10px;
+}
+.fa-chevron-left:before {
+  color: transparent;
+  margin: 10px;
 }
 
 /* MOBILE */
@@ -603,16 +618,14 @@ footer {
     width: 100% !important;
   }
 
-  /* .left-content {
-    display: flex;
-    width: 100%;
-    overflow-y: auto;
-    padding: 1rem;
-    text-align: center;
-    flex-wrap: wrap;
-    justify-content: flex-start;
-    margin: 0 auto;
-  } */
+.fa-chevron-right:before {
+  color: white;
+  margin: 10px;
+}
+.fa-chevron-left:before {
+  color: white;
+  margin: 10px;
+}
 
   .modal {
     background-color: black;
