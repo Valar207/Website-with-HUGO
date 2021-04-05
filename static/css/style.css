@@ -326,7 +326,8 @@ footer {
   color: aliceblue;
   position: absolute;
   width: 100%;
-  max-height: 30%;
+  height: 5vh;
+  max-height: 5vh;
   bottom: 0;
   padding: 2px;
   display: flex;
@@ -395,7 +396,7 @@ footer {
   position: absolute;
   top: 0 !important;
   left: 0 !important;
-  height: 93.4% !important;
+  height: 94.5vh;
   width: 100% !important;
 }
 
@@ -540,7 +541,8 @@ footer {
     color: aliceblue;
     position: absolute;
     width: 100%;
-    max-height: 10%;
+    height: 10vh;
+    max-height: 10vh;
     bottom: 0;
     padding: 2px;
     /* justify-content: space-around; */
@@ -579,12 +581,12 @@ footer {
     box-shadow: 8px 9px 10px 0px rgba(0, 0, 0, 0.91);
     top: 0 !important;
     left: 0 !important;
-    height: 89.5% !important;
+    height: 89.5vh;
     width: 100% !important;
     overflow: visible;
   }
 
-  .left-content {
+  /* .left-content {
     display: flex;
     width: 100%;
     overflow-y: auto;
@@ -593,7 +595,7 @@ footer {
     flex-wrap: wrap;
     justify-content: flex-start;
     margin: 0 auto;
-  }
+  } */
 
   .modal {
     background-color: black;
@@ -643,7 +645,7 @@ footer {
 
   .left-content {
     display: flex;
-    width: 100%;
+    width: auto;
     height: auto;
     overflow: auto;
     padding: 1rem;
@@ -652,6 +654,7 @@ footer {
     min-width: 100px;
     align-content: flex-start;
     margin: 0 auto;
+    justify-content: space-between;
   }
 
   .right-content {
