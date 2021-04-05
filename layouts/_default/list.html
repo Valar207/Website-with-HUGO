@@ -192,11 +192,13 @@
           {{end}}
          {{end}}
         </div>
+        {{if .Params.description}}
         <div class="right-content">
           <h3>
             {{.Params.description}}
           </h3>
         </div>
+        {{end}}
       </div>
     </div>
     {{ $.Scratch.Set "counter" (add ($.Scratch.Get "counter") 1) }} {{end}} {{end}} {{end}}
@@ -392,11 +394,13 @@
                {{end}}
 
               </div>
+              {{if .Params.description}}
               <div id="rc10" class="right-content">
                 <h3>
                   {{.Params.description}}
                 </h3>
               </div>
+              {{end}}
             </div>
           </div>
           {{end}}
@@ -553,11 +557,14 @@
             {{end}}
           {{end}}
                       </div>
+                      {{if .Params.description}}
+
                       <div id="rc10" class="right-content">
                         <h3>
                           {{.Params.description}}
                         </h3>
                       </div>
+                      {{end}}
                     </div>
                   </div>
                 {{end}}

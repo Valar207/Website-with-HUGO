@@ -581,7 +581,7 @@ footer {
     box-shadow: 8px 9px 10px 0px rgba(0, 0, 0, 0.91);
     top: 0 !important;
     left: 0 !important;
-    height: 89.5vh;
+    height: 89.5vh !important;
     width: 100% !important;
     overflow: visible;
   }
