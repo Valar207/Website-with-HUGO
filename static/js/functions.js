@@ -84,6 +84,7 @@ contact.onclick = function () {
       f.classList.add("activeFF");
     };
   }
+  updateScroll();
 };
 
 //OPEN WINDOWS WITH FOLDER FOOTER
@@ -95,6 +96,12 @@ for (let f of foldersFooter) {
     Open("folder" + id);
     f.classList.add("activeFF");
   };
+}
+
+//SCROLL DOWN FOOTER
+function updateScroll(){
+  var footer = document.querySelector(".left-footer");
+  footer.scrollTop = footer.scrollHeight;
 }
 
 //OPEN FOLDERS
@@ -132,6 +139,8 @@ for (let f of fitems) {
           f.classList.add("activeFF");
         };
       }
+
+      updateScroll();
     }
   };
 }
@@ -228,9 +237,11 @@ var carouselArrows;
 
 modalBtn.forEach((m, i) => {
   if (m[0]) {
-    var size = carouselSlide[i].clientWidth;
+    var size = carouselSlide[i].getBoundingClientRect().width;
     m.forEach((el) => {
       el.addEventListener("click", function (e) {
+    console.log(size);
+
         console.log("iciiiiiiiiiiiiiiiiii");
         modalBg[i].classList.add("bg-active");
         counter = parseInt(e.target.getAttribute("index"));

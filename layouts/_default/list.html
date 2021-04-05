@@ -583,7 +583,7 @@
       {{ $.Scratch.Set "counter" 1 }} {{range .Site.Pages}} {{if .Dir}} {{ $currentDir := trim .Dir `\`}} {{if not (in $currentDir `\`)}}
       <div id="f-{{$.Scratch.Get `counter`}}" class="folder-footer">
         <img src="images/dossier-ouvert.png" alt="" />
-        <p>{{$currentDir}}</p>
+        <h5>{{$currentDir}}</h5>
       </div>
       {{ $.Scratch.Set "counter" (add ($.Scratch.Get "counter") 1) }} {{end}} {{end}} {{end}}
     </div>
