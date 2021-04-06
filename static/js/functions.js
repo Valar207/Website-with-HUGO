@@ -166,7 +166,11 @@ for (let w of windows) {
     }
     w.style.zIndex = zindex++;
     zindex = zindex++;
-    document.querySelector("footer").style.zIndex = zindex;
+
+    if(!document.querySelector(".bg-active")){
+      document.querySelector("footer").style.zIndex = zindex;
+    }
+
     w.classList.remove("unactive-w");
     w.classList.add("active-w");
     let idWin = w.id.split("folder")[1];
@@ -285,19 +289,27 @@ modalBtn.forEach((m, i) => {
     });
 
     nextBtn[i].addEventListener("click", () => {
+      document.querySelector("footer").style.zIndex = 1;
       if (counter >= carouselImages[i].length - 1) return;
       carouselSlide[i].style.transition = "transform 0.0001s ease-in-out";
       counter++;
       carouselSlide[i].style.transform = "translateX(" + -size * counter + "px)";
       console.log("counter " + counter);
     });
+    nextBtn[i].addEventListener("mousedown", () => {
+      document.querySelector("footer").style.zIndex = 1;
+    });
 
     prevBtn[i].addEventListener("click", () => {
+      document.querySelector("footer").style.zIndex = 1;
       if (counter <= 0) return;
       carouselSlide[i].style.transition = "transform 0.0001s ease-in-out";
       counter--;
       carouselSlide[i].style.transform = "translateX(" + -size * counter + "px)";
       console.log("counter " + counter);
+    });
+    prevBtn[i].addEventListener("mousedown", () => {
+      document.querySelector("footer").style.zIndex = 1;
     });
 
     carouselSlide[i].addEventListener("transitionend", () => {
@@ -315,6 +327,7 @@ modalBtn.forEach((m, i) => {
 
     window.addEventListener("click", (e) => {
       if (e.target === modalBg[i]) {
+        document.querySelector("footer").style.zIndex = zindex;
         modalBg[i].classList.remove("bg-active");
         counter = null;
         window.removeEventListener("keydown", carouselArrows);
@@ -323,6 +336,7 @@ modalBtn.forEach((m, i) => {
 
     croix_modal.forEach((croix) => {
       croix.addEventListener("click", (e) => {
+        document.querySelector("footer").style.zIndex = zindex;
         modalBg[i].classList.remove("bg-active");
         counter = null;
         window.removeEventListener("keydown", carouselArrows);

@@ -185,7 +185,7 @@ p {
   padding: 1rem;
   text-align: center;
   flex-wrap: wrap;
-  min-width: 100px;
+  min-width: 150px;
   align-content: flex-start;
   margin: 0 auto;
 }
@@ -404,7 +404,7 @@ footer {
   position: absolute;
   top: 0 !important;
   left: 0 !important;
-  height: 94.5vh !important;
+  height: 93.5vh !important;
   width: 100% !important;
 }
 
@@ -440,12 +440,7 @@ footer {
   background-color: black;
   border: solid white 2px;
   position: relative;
-  width: 80%;
-  /* height: 90%; */
-  /* overflow: hidden; */
-  /* height: 80%; */
-  /* width: 80%;
-  height: 80%; */
+  max-width: 80%;
 }
 
 .croix_modal {
