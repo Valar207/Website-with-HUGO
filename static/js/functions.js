@@ -240,9 +240,8 @@ modalBtn.forEach((m, i) => {
     var size = carouselSlide[i].getBoundingClientRect().width;
     m.forEach((el) => {
       el.addEventListener("click", function (e) {
-    console.log(size);
+        document.querySelector("footer").style.zIndex = 1;
 
-        console.log("iciiiiiiiiiiiiiiiiii");
         modalBg[i].classList.add("bg-active");
         counter = parseInt(e.target.getAttribute("index"));
 
