@@ -141,7 +141,7 @@ p {
   min-height: 100px;
   position: absolute;
   visibility: hidden;
-  box-shadow: 8px 9px 10px 0px rgba(0, 0, 0, 0.91);
+  box-shadow: 8px 9px 10px 0px rgba(0, 0, 0, 0.70);
 }
 
 .contactW {
@@ -152,7 +152,7 @@ p {
   min-height: 100px;
   position: absolute;
   visibility: hidden;
-  box-shadow: 8px 9px 10px 0px rgba(0, 0, 0, 0.91);
+  box-shadow: 8px 9px 10px 0px rgba(0, 0, 0, 0.70);
 }
 
 .window-content {
@@ -200,7 +200,7 @@ p {
 .foldersInW {
   cursor: pointer;
   margin: 1rem;
-  width: 110px;
+  width: 145px;
 }
 .foldersInW img {
   height: 3rem;
@@ -208,7 +208,7 @@ p {
 
 .right-content {
   border-left: 1px solid white;
-  height: 100%;
+  height: auto;
   min-width: 100px;
   max-width: 250px;
   float: right;
@@ -280,7 +280,7 @@ p {
   text-align: center;
   cursor: pointer;
   margin: 30px;
-  width: 110px;
+  width: 136px;
 }
 
 .folder > img {
@@ -554,6 +554,19 @@ footer {
     justify-content: flex-start;
   }
 
+  .folder {
+    text-align: center;
+    cursor: pointer;
+    margin: 30px;
+    width: 110px;
+  }
+
+  .foldersInW {
+    cursor: pointer;
+    margin: 1rem;
+    width: 110px;
+}
+
   footer {
     background: black;
     color: aliceblue;
@@ -571,7 +584,7 @@ footer {
     max-height: 70px;
     display: flex;
     flex-wrap: wrap;
-    overflow-y: scroll;
+    overflow-y: auto;
   }
 
   .line {
@@ -594,10 +607,17 @@ footer {
     align-items: center;
   }
 
+  .imgContent {
+    height: 5.09rem;
+    margin: 0.5rem;
+    object-fit: cover;
+    cursor: pointer;
+  }
+
   .windows {
     position: absolute;
     visibility: hidden;
-    box-shadow: 8px 9px 10px 0px rgba(0, 0, 0, 0.91);
+    box-shadow: 8px 9px 10px 0px rgba(0, 0, 0, 0.70);
     top: 0 !important;
     left: 0 !important;
     height: 82.5vh;
@@ -679,7 +699,7 @@ footer {
     width: auto;
     height: auto;
     overflow: auto;
-    padding: 1rem;
+    padding: 0rem;
     text-align: center;
     flex-wrap: wrap;
     min-width: 100px;
@@ -692,7 +712,7 @@ footer {
     border-top: 1px solid white;
     border-left: none;
     height: auto;
-    max-height: 20%;
+    min-height: 35%;
     max-width: 100%;
     float: left;
     bottom: 0;
@@ -710,6 +730,6 @@ footer {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
-    overflow-y: scroll;
+    overflow-y: auto;
   }
 }

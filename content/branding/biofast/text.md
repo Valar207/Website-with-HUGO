@@ -5,7 +5,7 @@ draft: false
 description: ""
 images:
   [
-    "/images/branding/biofast/packaging.jpg",
+    "/images/branding/biofast/nyan.gif",
     "/images/branding/biofast/parcours.jpg",
     "/images/branding/biofast/pictos.jpg",
     "/images/branding/biofast/planche.jpg",

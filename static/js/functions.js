@@ -1,8 +1,6 @@
 let zindex = 0;
 function Open(windowId) {
-  console.log(windowId);
   let w = document.getElementById(windowId);
-  console.log(w);
   w.style.visibility = "visible";
   for (let w of windows) {
     w.classList.remove("active-w");
@@ -132,7 +130,6 @@ for (let f of fitems) {
 
       //RESELECT FOLDER FOOTER CAUSE THERE IS ONE NEW
       foldersFooter = document.querySelector(".footer").querySelectorAll("*[id]");
-      // console.log(foldersFooter);
       for (let f of foldersFooter) {
         let id = f.id.split("f-")[1];
         document.getElementById(f.id).onclick = function () {
@@ -250,7 +247,6 @@ modalBtn.forEach((m, i) => {
         modalBg[i].classList.add("bg-active");
         counter = parseInt(e.target.getAttribute("index"));
 
-        console.log("counter " + counter);
         carouselSlide[i].style.transform = "translateX(" + -size * counter + "px)";
         carouselSlide[i].style.transition = "transform 0s";
 
@@ -268,7 +264,6 @@ modalBtn.forEach((m, i) => {
             counter--;
             carouselSlide[i].style.transform = "translateX(" + -size * counter + "px)";
           }
-          console.log("counter " + counter);
         };
 
         // window.removeEventListener("keydown", carouselArrows);
@@ -278,7 +273,6 @@ modalBtn.forEach((m, i) => {
         // window.addEventListener("keydown", carouselKey);
 
         // document.addEventListener("keydown", function (e) {
-        //   console.log(e);
         // });
       });
     });
@@ -295,7 +289,6 @@ modalBtn.forEach((m, i) => {
       carouselSlide[i].style.transition = "transform 0.0001s ease-in-out";
       counter++;
       carouselSlide[i].style.transform = "translateX(" + -size * counter + "px)";
-      console.log("counter " + counter);
     });
     nextBtn[i].addEventListener("mousedown", () => {
       document.querySelector("footer").style.zIndex = 1;
@@ -307,7 +300,6 @@ modalBtn.forEach((m, i) => {
       carouselSlide[i].style.transition = "transform 0.0001s ease-in-out";
       counter--;
       carouselSlide[i].style.transform = "translateX(" + -size * counter + "px)";
-      console.log("counter " + counter);
     });
     prevBtn[i].addEventListener("mousedown", () => {
       document.querySelector("footer").style.zIndex = 1;
