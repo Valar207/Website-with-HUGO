@@ -2,6 +2,7 @@ let zindex = 0;
 function Open(windowId) {
   console.log(windowId);
   let w = document.getElementById(windowId);
+  console.log(w);
   w.style.visibility = "visible";
   for (let w of windows) {
     w.classList.remove("active-w");
@@ -62,7 +63,7 @@ contact.onclick = function () {
     let newF = document.createElement("div");
     let p = document.createElement("h5");
     let img = document.createElement("IMG");
-    img.setAttribute("src", "images/ordi.png");
+    img.setAttribute("src", "images/contact-small.png");
     newF.appendChild(img);
     newF.appendChild(p);
     let node = document.createTextNode(document.querySelector(".computer").attributes["name"].value);
@@ -131,7 +132,7 @@ for (let f of fitems) {
 
       //RESELECT FOLDER FOOTER CAUSE THERE IS ONE NEW
       foldersFooter = document.querySelector(".footer").querySelectorAll("*[id]");
-      console.log(foldersFooter);
+      // console.log(foldersFooter);
       for (let f of foldersFooter) {
         let id = f.id.split("f-")[1];
         document.getElementById(f.id).onclick = function () {
