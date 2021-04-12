@@ -130,8 +130,6 @@ p {
   font-size: 18px;
 }
 
-
-
 /* WINDOWS */
 .windows {
   background-color: white;
@@ -141,7 +139,7 @@ p {
   min-height: 100px;
   position: absolute;
   visibility: hidden;
-  box-shadow: 8px 9px 10px 0px rgba(0, 0, 0, 0.70);
+  box-shadow: 8px 9px 10px 0px rgba(0, 0, 0, 0.7);
 }
 
 .contactW {
@@ -152,7 +150,7 @@ p {
   min-height: 100px;
   position: absolute;
   visibility: hidden;
-  box-shadow: 8px 9px 10px 0px rgba(0, 0, 0, 0.70);
+  box-shadow: 8px 9px 10px 0px rgba(0, 0, 0, 0.7);
 }
 
 .window-content {
@@ -348,7 +346,6 @@ footer {
   flex-wrap: wrap;
   overflow-y: auto;
   max-height: 100%;
-
 }
 
 .right-footer {
@@ -565,7 +562,7 @@ footer {
     cursor: pointer;
     margin: 1rem;
     width: 110px;
-}
+  }
 
   footer {
     background: black;
@@ -617,7 +614,7 @@ footer {
   .windows {
     position: absolute;
     visibility: hidden;
-    box-shadow: 8px 9px 10px 0px rgba(0, 0, 0, 0.70);
+    box-shadow: 8px 9px 10px 0px rgba(0, 0, 0, 0.7);
     top: 0 !important;
     left: 0 !important;
     height: 82.5vh;
@@ -633,16 +630,16 @@ footer {
     width: 100% !important;
   }
 
-.fa-chevron-right:before {
-  color: white;
-  margin: 10px;
-  text-shadow: 0 0 3px #000;
-}
-.fa-chevron-left:before {
-  color: white;
-  margin: 10px;
-  text-shadow: 0 0 3px #000;
-}
+  .fa-chevron-right:before {
+    color: white;
+    margin: 10px;
+    text-shadow: 0 0 3px #000;
+  }
+  .fa-chevron-left:before {
+    color: white;
+    margin: 10px;
+    text-shadow: 0 0 3px #000;
+  }
 
   .modal {
     background-color: black;
@@ -712,7 +709,7 @@ footer {
     border-top: 1px solid white;
     border-left: none;
     height: auto;
-    min-height: 35%;
+    min-height: 30%;
     max-width: 100%;
     float: left;
     bottom: 0;

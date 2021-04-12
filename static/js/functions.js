@@ -1,3 +1,29 @@
+// KONAMI CODE
+const keySequence = [
+  "ArrowUp",
+  "ArrowUp",
+  "ArrowDown",
+  "ArrowDown",
+  "ArrowLeft",
+  "ArrowRight",
+  "ArrowLeft",
+  "ArrowRight",
+  "b",
+  "a",
+];
+
+let userInput = new Array(keySequence.length);
+
+window.addEventListener("keydown", ({ key }) => {
+  userInput = [...userInput.slice(1), key];
+
+  if (keySequence.every((v, k) => v === userInput[k])) {
+    alert("Yatta!");
+  }
+});
+
+// FIN KONAMI CODE
+
 let zindex = 0;
 function Open(windowId) {
   let w = document.getElementById(windowId);
@@ -98,7 +124,7 @@ for (let f of foldersFooter) {
 }
 
 //SCROLL DOWN FOOTER
-function updateScroll(){
+function updateScroll() {
   var footer = document.querySelector(".left-footer");
   footer.scrollTop = footer.scrollHeight;
 }
@@ -165,7 +191,7 @@ for (let w of windows) {
     w.style.zIndex = zindex++;
     zindex = zindex++;
 
-    if(!document.querySelector(".bg-active")){
+    if (!document.querySelector(".bg-active")) {
       document.querySelector("footer").style.zIndex = zindex;
     }
 
@@ -234,18 +260,25 @@ const nextBtn = createArray("#nextBtn{#}", 99);
 const carouselSlide = createArray(".carousel{#}", 99);
 const carouselImages = createArrayAll(".carousel_item{#}", 99);
 let counter = 0;
-
 var carouselArrows;
 
 modalBtn.forEach((m, i) => {
   if (m[0]) {
-    var size = carouselSlide[i].getBoundingClientRect().width;
+    // console.log(carouselSlide[i]);
+    // var size = carouselSlide[i].getBoundingClientRect().width;
+    // var size = carouselSlide[i].getClientRects()[0].width;
+    // var size = carouselSlide[i].clientWidth;
+    var size = window.innerWidth*80/100;
+    // console.log(window.innerWidth*80/100);
+
     m.forEach((el) => {
       el.addEventListener("click", function (e) {
         document.querySelector("footer").style.zIndex = 1;
 
         modalBg[i].classList.add("bg-active");
+
         counter = parseInt(e.target.getAttribute("index"));
+
 
         carouselSlide[i].style.transform = "translateX(" + -size * counter + "px)";
         carouselSlide[i].style.transition = "transform 0s";
@@ -266,14 +299,7 @@ modalBtn.forEach((m, i) => {
           }
         };
 
-        // window.removeEventListener("keydown", carouselArrows);
-
         window.addEventListener("keydown", carouselArrows);
-
-        // window.addEventListener("keydown", carouselKey);
-
-        // document.addEventListener("keydown", function (e) {
-        // });
       });
     });
 
@@ -284,6 +310,7 @@ modalBtn.forEach((m, i) => {
     });
 
     nextBtn[i].addEventListener("click", () => {
+      // console.log("count : " + counter);
       document.querySelector("footer").style.zIndex = 1;
       if (counter >= carouselImages[i].length - 1) return;
       carouselSlide[i].style.transition = "transform 0.0001s ease-in-out";
@@ -295,6 +322,7 @@ modalBtn.forEach((m, i) => {
     });
 
     prevBtn[i].addEventListener("click", () => {
+      // console.log("count : " + counter);
       document.querySelector("footer").style.zIndex = 1;
       if (counter <= 0) return;
       carouselSlide[i].style.transition = "transform 0.0001s ease-in-out";
@@ -334,6 +362,13 @@ modalBtn.forEach((m, i) => {
         counter = null;
         window.removeEventListener("keydown", carouselArrows);
       });
+    });
+
+    //QUITER AVEC ECHAPPE
+    window.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") {
+        modalBg[i].classList.remove("bg-active");
+      }
     });
   }
 });
