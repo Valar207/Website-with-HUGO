@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+    <title>B-VI</title>
+    <meta name="description" content="Lucas Bessis — Graphisme, Direction artistique. Paris, France." />
+    <link rel="icon" href="assets/B6_round_small.png" />
+    <link rel="preload" href="assets/PxGroteskScreen.ttf" as="font" type="font/ttf" crossorigin />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="darken"></div>
+    <div class="spotlight"></div>
+    <div class="grain"></div>
+
+    <div class="boot" id="boot" aria-hidden="true">
+      <img src="assets/B6_round_small.png" alt="" />
+      <div class="boot-bar" id="bootBar"></div>
+      <div class="boot-text" id="bootText"></div>
+    </div>
+
+    <main class="folders" id="desktop" aria-label="Bureau"></main>
+    <div id="windows"></div>
+
+    <footer class="footer" id="footer">
+      <img class="B6circle" id="b6" src="assets/B6_round_small.png" alt="Tout réduire" title="Tout réduire" />
+      <div class="line"></div>
+      <div class="left-footer" id="tabs"></div>
+      <div class="line"></div>
+      <div class="time-footer" id="clock"></div>
+    </footer>
+
+    <div class="modal-bg" id="lightbox" role="dialog" aria-modal="true" aria-label="Visionneuse">
+      <div class="modal">
+        <div class="counter" id="lbCounter"></div>
+        <button class="croix_modal" id="lbClose" aria-label="Fermer"><img src="assets/croix_01.png" alt="" /></button>
+        <div class="overflow_croix"><div class="carousel" id="lbTrack"></div></div>
+        <button class="prevBtn" id="lbPrev" aria-label="Précédente"><span>‹</span></button>
+        <button class="nextBtn" id="lbNext" aria-label="Suivante"><span>›</span></button>
+      </div>
+    </div>
+
+    <div class="screensaver" id="saver"><img src="assets/B6_round_small.png" alt="" /></div>
+
+    <script src="data.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
